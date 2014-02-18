@@ -7,4 +7,5 @@
     This file is here for bean-discovery-mode="none", which turns off CDI 1.1's erroneous behaviour
     of assuming that anything annotated with @Inject is a "managed bean" and must be instantiated
     -->
+    <!--test-->
 </beans>
