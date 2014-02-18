@@ -4,11 +4,8 @@ import com.example.component.Loggable;
 import com.example.orders.api.OrderCreatedEvent;
 import org.axonframework.eventhandling.annotation.EventHandler;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import javax.inject.Inject;
 
 /**
  * Created with IntelliJ IDEA.
@@ -21,7 +18,8 @@ import javax.inject.Inject;
 public class OrderListener {
 
 
-    @Loggable Logger log;
+    @Loggable
+    private Logger log;
 
     @Autowired
     OrderEntryRepository repository;
@@ -30,7 +28,7 @@ public class OrderListener {
     @EventHandler
     public void handleOrderCreatedEvent(OrderCreatedEvent event){
        log.info("handling OrderCreatedEvent");
-        repository.saveAndFlush(new OrderEntity(event.getOrderId()));
+        repository.saveAndFlush(new OrderEntry(event.getOrderId()));
     //    throw new RuntimeException("RuntimeException from OrderListener handleOrderCreatedEvent");
     }
 }

@@ -1,5 +1,6 @@
 package com.example.orders.command;
 
+import com.example.component.Loggable;
 import com.example.orders.api.CancelOrderCommand;
 import com.example.orders.api.ConfirmOrderCommand;
 import com.example.orders.api.CreateOrderCommand;
@@ -22,7 +23,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class OrderCommandHandler {
 
-    private final static Logger logger = LoggerFactory.getLogger(OrderCommandHandler.class);
+    @Loggable
+    private Logger log;
 
     @Autowired
     @Qualifier("orderRepository")
@@ -33,7 +35,7 @@ public class OrderCommandHandler {
 
     @CommandHandler
     public void handle(final CreateOrderCommand command) {
-        logger.info("Received a command for a new Order with Product : {}", command.getProductId());
+        log.info("Received a command for a new Order with Product : {}", command.getProductId());
         Order order = new Order(command.getOrderId(), command.getProductId());
         repository.add(order);
     }
@@ -47,7 +49,7 @@ public class OrderCommandHandler {
      */
     @CommandHandler
     public void handle(final ConfirmOrderCommand command) {
-        logger.debug("Received a command to confirm Order");
+        log.debug("Received a command to confirm Order");
     }
 
 
@@ -59,7 +61,7 @@ public class OrderCommandHandler {
      */
     @CommandHandler
     public void handle(final CancelOrderCommand command) {
-        logger.debug("Received a command to cancel Order");
+        log.debug("Received a command to cancel Order");
     }
 
 

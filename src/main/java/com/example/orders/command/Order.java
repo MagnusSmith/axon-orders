@@ -1,5 +1,6 @@
 package com.example.orders.command;
 
+import com.example.component.Loggable;
 import com.example.orders.api.OrderCreatedEvent;
 import com.example.orders.api.OrderId;
 import org.axonframework.eventsourcing.annotation.AbstractAnnotatedAggregateRoot;
@@ -17,7 +18,8 @@ import org.slf4j.LoggerFactory;
 */
 public class Order extends AbstractAnnotatedAggregateRoot {
 
-    private final static Logger logger = LoggerFactory.getLogger(Order.class);
+    @Loggable
+    private Logger log;
 
     @AggregateIdentifier
     private OrderId orderId;

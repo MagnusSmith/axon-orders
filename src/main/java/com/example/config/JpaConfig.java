@@ -1,6 +1,7 @@
 package com.example.config;
 
 
+
 import com.example.Application;
 import org.hibernate.cfg.Environment;
 import org.springframework.beans.factory.annotation.Value;

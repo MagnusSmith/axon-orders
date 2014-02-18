@@ -14,14 +14,14 @@ import javax.persistence.IdClass;
 *
 */
 @Entity
-public class OrderEntity {
+public class OrderEntry {
 
     @Id
     private OrderId id;
 
-    OrderEntity(){};
+    OrderEntry(){};
 
-    OrderEntity(OrderId id){
+    OrderEntry(OrderId id){
         this.id = id;
     }
 }

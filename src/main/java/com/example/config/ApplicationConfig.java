@@ -1,5 +1,6 @@
 package com.example.config;
 
+import com.example.Application;
 import com.example.orders.command.Order;
 import com.example.orders.command.OrderCommandHandler;
 import org.axonframework.commandhandling.CommandBus;
@@ -23,7 +24,7 @@ import org.springframework.core.io.ClassPathResource;
 import java.io.File;
 
 @Configuration
-@ComponentScan(basePackages = {"com.example.config", "com.example.orders.rest", "com.example.orders.command", "com.example.orders.query"})
+@ComponentScan(basePackageClasses = Application.class)
 public class ApplicationConfig {
 
     @Bean
@@ -83,17 +84,5 @@ public class ApplicationConfig {
         return repository;
     }
 
-
-    public static void main(String[] args) {
-//        ApplicationContext ctx = SpringApplication.run(Application.class, args);
-//
-//        System.out.println("Let's inspect the beans provided by Spring Boot:");
-//
-//        String[] beanNames = ctx.getBeanDefinitionNames();
-//        Arrays.sort(beanNames);
-//        for (String beanName : beanNames) {
-//            System.out.println(beanName);
-//        }
-    }
 
 }
