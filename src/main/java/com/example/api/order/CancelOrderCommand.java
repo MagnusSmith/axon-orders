@@ -1,4 +1,4 @@
-package com.example.orders.api;
+package com.example.api.order;
 
 import org.axonframework.commandhandling.annotation.TargetAggregateIdentifier;
 
@@ -7,13 +7,14 @@ import org.axonframework.commandhandling.annotation.TargetAggregateIdentifier;
  * User: magnus.smith
  * Date: 10/02/14
  * Time: 11:41
- * Copyright Advanced Computer Software Group 2014
  */
-public class ConfirmOrderCommand {
+public class CancelOrderCommand  {
     @TargetAggregateIdentifier
     private final OrderId orderId;
 
-    public ConfirmOrderCommand(OrderId orderId) {
+    public CancelOrderCommand(OrderId orderId) {
         this.orderId = orderId;
     }
+
+
 }

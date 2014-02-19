@@ -1,4 +1,4 @@
-package com.example.orders.api;
+package com.example.api.order;
 
 import org.axonframework.commandhandling.annotation.TargetAggregateIdentifier;
 

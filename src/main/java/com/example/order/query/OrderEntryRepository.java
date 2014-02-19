@@ -1,7 +1,7 @@
-package com.example.orders.query;
+package com.example.order.query;
 
 
-import com.example.orders.api.OrderId;
+import com.example.api.order.OrderId;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,10 +1,9 @@
-package com.example.orders.query;
+package com.example.order.query;
 
-import com.example.orders.api.OrderId;
+import com.example.api.order.OrderId;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 
 /**
 * Created with IntelliJ IDEA.
@@ -18,6 +17,8 @@ public class OrderEntry {
 
     @Id
     private OrderId id;
+
+
 
     OrderEntry(){};
 

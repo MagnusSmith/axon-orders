@@ -1,7 +1,7 @@
-package com.example.orders.query;
+package com.example.order.query;
 
 import com.example.component.Loggable;
-import com.example.orders.api.OrderCreatedEvent;
+import com.example.api.order.OrderCreatedEvent;
 import org.axonframework.eventhandling.annotation.EventHandler;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

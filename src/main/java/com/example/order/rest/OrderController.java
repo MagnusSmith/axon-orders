@@ -1,7 +1,7 @@
-package com.example.orders.rest;
+package com.example.order.rest;
 
-import com.example.orders.api.CreateOrderCommand;
-import com.example.orders.api.OrderId;
+import com.example.api.order.CreateOrderCommand;
+import com.example.api.order.OrderId;
 import org.axonframework.commandhandling.CommandCallback;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,13 +1,12 @@
-package com.example.orders.command;
+package com.example.order.command;
 
 import com.example.component.Loggable;
-import com.example.orders.api.CancelOrderCommand;
-import com.example.orders.api.ConfirmOrderCommand;
-import com.example.orders.api.CreateOrderCommand;
+import com.example.api.order.CancelOrderCommand;
+import com.example.api.order.ConfirmOrderCommand;
+import com.example.api.order.CreateOrderCommand;
 import org.axonframework.commandhandling.annotation.CommandHandler;
 import org.axonframework.repository.Repository;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -35,38 +34,38 @@ public class OrderCommandHandler {
 
     @CommandHandler
     public void handle(final CreateOrderCommand command) {
-        log.info("Received a command for a new Order with Product : {}", command.getProductId());
+        log.info("Received a command for a new OrderEntry with Product : {}", command.getProductId());
         Order order = new Order(command.getOrderId(), command.getProductId());
         repository.add(order);
     }
 
 
     /**
-     * Confirms an Order
-     * An {@code AggregateNotFoundException} is thrown if the identifier does not represent a valid Order.
+     * Confirms an OrderEntry
+     * An {@code AggregateNotFoundException} is thrown if the identifier does not represent a valid OrderEntry.
      *
      * @param command
      */
     @CommandHandler
     public void handle(final ConfirmOrderCommand command) {
-        log.debug("Received a command to confirm Order");
+        log.debug("Received a command to confirm OrderEntry");
     }
 
 
     /**
-     * Cancels an Order.
+     * Cancels an OrderEntry.
      * If the identifier does not exist, an {@code AggregateNotFoundException} is thrown.
      *
      * @param command
      */
     @CommandHandler
     public void handle(final CancelOrderCommand command) {
-        log.debug("Received a command to cancel Order");
+        log.debug("Received a command to cancel OrderEntry");
     }
 
 
 
-//    public void setRepository(Repository<Order> orderRepository) {
+//    public void setRepository(Repository<OrderEntry> orderRepository) {
 //        this.repository = orderRepository;
 //    }
 }

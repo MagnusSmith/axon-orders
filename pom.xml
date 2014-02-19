@@ -262,19 +262,19 @@
                 </configuration>
             </plugin>
 
-       <!--     <plugin>
-                <groupId>org.wildfly.plugins</groupId>
-                <artifactId>wildfly-maven-plugin</artifactId>
-                <version>1.0.0.Beta1</version>
-                <executions>
-                    <execution>
-                        <phase>install</phase>
-                        <goals>
-                            <goal>deploy</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>     -->
+           <!--<plugin>-->
+                <!--<groupId>org.wildfly.plugins</groupId>-->
+                <!--<artifactId>wildfly-maven-plugin</artifactId>-->
+                <!--<version>1.0.0.Beta1</version>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<phase>install</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>deploy</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
 
         </plugins>
 
@@ -340,7 +340,7 @@
                 <hibernate.hbm2ddl.auto>create</hibernate.hbm2ddl.auto>
                 <hibernate.ejb.naming_strategy>org.hibernate.cfg.ImprovedNamingStrategy</hibernate.ejb.naming_strategy>
                 <hibernate.show_sql>true</hibernate.show_sql>
-                <jpa.entitiy.packages>com.example.orders.query</jpa.entitiy.packages>
+                <jpa.entitiy.packages>com.example.order.query</jpa.entitiy.packages>
                 <build.profile.id>dev</build.profile.id>
             </properties>
             <build>

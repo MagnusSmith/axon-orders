@@ -1,13 +1,12 @@
-package com.example.orders.command;
+package com.example.order.command;
 
 import com.example.component.Loggable;
-import com.example.orders.api.OrderCreatedEvent;
-import com.example.orders.api.OrderId;
+import com.example.api.order.OrderCreatedEvent;
+import com.example.api.order.OrderId;
 import org.axonframework.eventsourcing.annotation.AbstractAnnotatedAggregateRoot;
 import org.axonframework.eventsourcing.annotation.AggregateIdentifier;
 import org.axonframework.eventsourcing.annotation.EventSourcingHandler;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
 * Created with IntelliJ IDEA.

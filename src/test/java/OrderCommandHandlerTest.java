@@ -19,7 +19,7 @@ public class OrderCommandHandlerTest {
 //
 //        OrderCommandHandler commandHandler = new OrderCommandHandler();
 //
-//        commandHandler.setOrderRepository(fixture.registerRepository(Order.class));
+//        commandHandler.setOrderRepository(fixture.registerRepository(OrderEntry.class));
 //
 //        fixture.registerAnnotatedCommandHandler(commandHandler);
 //

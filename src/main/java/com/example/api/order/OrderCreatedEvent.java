@@ -1,4 +1,4 @@
-package com.example.orders.api;
+package com.example.api.order;
 
 /**
  * Created with IntelliJ IDEA.
