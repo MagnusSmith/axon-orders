@@ -46,7 +46,8 @@ class JpaConfig implements TransactionManagementConfigurer {
     @Value("${hibernate.show_sql}")
     private String showSql;
 
-    private final String[] packagesToScan = {"com.example.orders.query"};
+    @Value("${jpa.entitiy.packages}")
+    private String[] entityPackages;
 
     @Bean
     public DataSource dataSource() {
@@ -62,7 +63,7 @@ class JpaConfig implements TransactionManagementConfigurer {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource());
-        entityManagerFactoryBean.setPackagesToScan(packagesToScan);
+        entityManagerFactoryBean.setPackagesToScan(entityPackages);
         entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
 
         Properties jpaProperties = new Properties();
