@@ -1,5 +1,6 @@
 package com.example.order.command;
 
+import com.example.api.order.AddOrderLineCommand;
 import com.example.component.Loggable;
 import com.example.api.order.CancelOrderCommand;
 import com.example.api.order.ConfirmOrderCommand;
@@ -64,8 +65,12 @@ public class OrderCommandHandler {
     }
 
 
+    @CommandHandler
+    public void handle(final AddOrderLineCommand command) {
+        log.info("Received a command to Add OrderLine");
+        Order order = repository.load(command.getOrderId());
+        order.addLine(command.getOrderLineId(), command.getProductId(), command.getDescription(), command.getPrice(), command.getQuantity());
 
-//    public void setRepository(Repository<OrderEntry> orderRepository) {
-//        this.repository = orderRepository;
-//    }
+    }
+
 }
