@@ -3,6 +3,7 @@ package com.example.config;
 import com.example.Application;
 import com.example.order.command.Order;
 import com.example.order.command.OrderCommandHandler;
+import com.example.product.command.Product;
 import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.commandhandling.SimpleCommandBus;
 import org.axonframework.commandhandling.annotation.AnnotationCommandHandlerBeanPostProcessor;
@@ -76,6 +77,13 @@ public class AxonConfig {
     @Bean(name = "orderRepository")
     public Repository<Order> repository() {
         EventSourcingRepository repository = new EventSourcingRepository<>(Order.class, eventStore());
+        repository.setEventBus(eventBus());
+        return repository;
+    }
+
+    @Bean(name = "productRepository")
+    public Repository<Product> productRepository() {
+        EventSourcingRepository repository = new EventSourcingRepository<>(Product.class, eventStore());
         repository.setEventBus(eventBus());
         return repository;
     }

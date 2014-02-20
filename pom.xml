@@ -340,7 +340,7 @@
                 <hibernate.hbm2ddl.auto>create</hibernate.hbm2ddl.auto>
                 <hibernate.ejb.naming_strategy>org.hibernate.cfg.ImprovedNamingStrategy</hibernate.ejb.naming_strategy>
                 <hibernate.show_sql>true</hibernate.show_sql>
-                <jpa.entitiy.packages>com.example.order.query</jpa.entitiy.packages>
+                <jpa.entitiy.packages>com.example.order.query, com.example.product.query</jpa.entitiy.packages>
                 <build.profile.id>dev</build.profile.id>
             </properties>
             <build>
