@@ -13,6 +13,10 @@ axonOrdersApp
                 controller: 'ProductController'
             }).when('/test', {
                 template:"This is a test"
-            })
+            }).when('/newProduct', {
+                templateUrl: 'views/newProduct.html'
+            }).otherwise({
+                redirectTo:'/'
+            });
     }])
 

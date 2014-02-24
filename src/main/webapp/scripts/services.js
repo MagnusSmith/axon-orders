@@ -1,3 +1,7 @@
-/**
- * Created by michael.klos on 20/02/14.
- */
+
+axonOrdersApp.factory('Products', ['$resource',
+    function ($resource) {
+        return $resource('rest/products', {}, {
+            'get': { method: 'GET', isArray: true}
+        });
+    }]);

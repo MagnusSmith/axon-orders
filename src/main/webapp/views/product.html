@@ -1,3 +1,19 @@
 <div>
-    this is product page
+    <div style="text-align: right;">
+        <button ng-click="newProductView()" class="btn btn-default">New Product</button>
+    </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Model Number</th>
+            <th>Brand</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="product in products">
+                <td>{{product.modelNumber}}</td>
+                <td>{{product.brand}}</td>
+            </tr>
+        </tbody>
+    </table>
 </div>

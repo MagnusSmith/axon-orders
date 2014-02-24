@@ -37,6 +37,7 @@ public class ProductEntry implements Serializable {
         return "Product{" +
                 "modelNumber='" + modelNumber + '\'' +
                 ", brand='" + brand + '\'' +
+                ", id='"+id+ '\'' +
                 "}";
     }
 
@@ -47,5 +48,9 @@ public class ProductEntry implements Serializable {
 
     public String getBrand() {
         return brand;
+    }
+
+    public String getId() {
+        return id.toString();
     }
 }

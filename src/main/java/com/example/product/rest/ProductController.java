@@ -29,10 +29,10 @@ public class ProductController {
 
     @RequestMapping("/init")
     public void init(){
-        gateway.send(new CreateProductCommand(new ProductId(), "Audi", "S3"));
-        gateway.send(new CreateProductCommand(new ProductId(),"BMW","M1"));
-        gateway.send(new CreateProductCommand(new ProductId(),"Ford","Mondeo"));
-        gateway.send(new CreateProductCommand(new ProductId(),"Audi","Q3"));
+        gateway.send(new CreateProductCommand(new ProductId(), "Model 1", "Brand 1"));
+        gateway.send(new CreateProductCommand(new ProductId(),"Model 2","Brand 2"));
+        gateway.send(new CreateProductCommand(new ProductId(),"Model 3","Brand 3"));
+        gateway.send(new CreateProductCommand(new ProductId(),"Model 4","Brand 4"));
     }
 
     @RequestMapping("/product")
@@ -45,8 +45,10 @@ public class ProductController {
             method = RequestMethod.GET,
             produces = "application/json")
     public List<ProductEntry> getAllProducts() {
-        List<ProductEntry> list = productEntryRepository.findAll();
-        return list;
+        if(productEntryRepository.count() == 0){
+            init();
+        }
+        return productEntryRepository.findAll();
     }
 
 
