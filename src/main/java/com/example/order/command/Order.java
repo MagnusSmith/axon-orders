@@ -6,6 +6,10 @@ import com.example.api.product.ProductId;
 import com.example.component.Loggable;
 import com.example.api.order.OrderCreatedEvent;
 import com.example.api.order.OrderId;
+import com.google.common.base.Predicate;
+import com.google.common.collect.FluentIterable;
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
 import org.axonframework.eventsourcing.annotation.AbstractAnnotatedAggregateRoot;
 import org.axonframework.eventsourcing.annotation.AggregateIdentifier;
 import org.axonframework.eventsourcing.annotation.EventSourcedMember;
@@ -44,9 +48,23 @@ public class Order extends AbstractAnnotatedAggregateRoot {
     }
 
 
-    public void addLine(OrderLineId orderLineId, ProductId productId, String description, BigDecimal price, int quantity){
-        lines.add(new OrderLine(orderLineId, productId, description, price, quantity));
-        apply(new OrderLineAddedEvent(orderLineId, productId, orderId, description, price, quantity));
+    public void addLine(ProductId productId, String description, BigDecimal price, int quantity){
+        OrderLine line = new OrderLine(productId, description, price, quantity);
+        lines.add(line);
+        apply(new OrderLineAddedEvent(line.getOrderLineId(), productId, orderId, description, price, quantity));
+    }
+
+    public void removeLine(final OrderLineId orderLineId){
+        final boolean found = Iterables.removeIf(lines, new Predicate<OrderLine>() {
+            @Override
+            public boolean apply(OrderLine line) {
+                return orderLineId.equals(line.getOrderLineId());
+            }
+        });
+        if(found){
+           log.info("removed orderLine[{}] from order", orderLineId);
+
+        }
     }
 
 
@@ -60,4 +78,9 @@ public class Order extends AbstractAnnotatedAggregateRoot {
         return orderId;
     }
 
+
+    private List<OrderLine> filterLines(Predicate<OrderLine> predicate){
+        Iterable<OrderLine> filtered = FluentIterable.from(lines).filter(predicate);
+        return Lists.newArrayList(filtered);
+    }
 }

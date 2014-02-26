@@ -1,10 +1,7 @@
 package com.example.order.command;
 
-import com.example.api.order.AddOrderLineCommand;
+import com.example.api.order.*;
 import com.example.component.Loggable;
-import com.example.api.order.CancelOrderCommand;
-import com.example.api.order.ConfirmOrderCommand;
-import com.example.api.order.CreateOrderCommand;
 import org.axonframework.commandhandling.annotation.CommandHandler;
 import org.axonframework.repository.Repository;
 import org.slf4j.Logger;
@@ -49,7 +46,7 @@ public class OrderCommandHandler {
      */
     @CommandHandler
     public void handle(final ConfirmOrderCommand command) {
-        log.debug("Received a command to confirm OrderEntry");
+        log.debug("Received a command to confirm Order");
     }
 
 
@@ -61,7 +58,7 @@ public class OrderCommandHandler {
      */
     @CommandHandler
     public void handle(final CancelOrderCommand command) {
-        log.debug("Received a command to cancel OrderEntry");
+        log.debug("Received a command to cancel Order");
     }
 
 
@@ -69,7 +66,16 @@ public class OrderCommandHandler {
     public void handle(final AddOrderLineCommand command) {
         log.info("Received a command to Add OrderLine");
         Order order = repository.load(command.getOrderId());
-        order.addLine(command.getOrderLineId(), command.getProductId(), command.getDescription(), command.getPrice(), command.getQuantity());
+        order.addLine(command.getProductId(), command.getDescription(), command.getPrice(), command.getQuantity());
+
+    }
+
+
+    @CommandHandler
+    public void handle(final RemoveOrderLineCommand command) {
+        log.info("Received a command to remove OrderLine") ;
+        Order order = repository.load(command.getOrderId());
+        order.removeLine(command.getOrderLineId());
 
     }
 

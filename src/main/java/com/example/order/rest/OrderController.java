@@ -3,57 +3,54 @@ package com.example.order.rest;
 import com.example.api.order.AddOrderLineCommand;
 import com.example.api.order.CreateOrderCommand;
 import com.example.api.order.OrderId;
-import com.example.api.order.OrderLineId;
 import com.example.api.product.ProductId;
 import org.axonframework.commandhandling.CommandCallback;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 
 import java.math.BigDecimal;
-import java.util.UUID;
 
 
 @RestController
+@RequestMapping("/order")
 public class OrderController {
 
     @Autowired
     CommandGateway gateway;
-    
-    @RequestMapping("/")
-    public String index() {
-        OrderId orderId = new OrderId();
 
-        gateway.send((new CreateOrderCommand(orderId, "Product One")), new CommandCallback<Object>() {
-            @Override
-            public void onSuccess(Object o) {
-                System.out.println("Create Order Success!");
-            }
 
-            @Override
-            public void onFailure(Throwable throwable) {
-                System.out.println("Create Order Fail! " + throwable.getMessage());
-            }
-        });
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
+    public OrderId createOrder() {
+        CreateOrderCommand  createOrder = new CreateOrderCommand("Product One");
+        gateway.send(createOrder, newCallBackHandler());
+        return createOrder.getOrderId();
+    }
 
+
+    @RequestMapping(value = "/{orderId}/addLine", method = RequestMethod.GET)
+    public void addOrderLine(@PathVariable OrderId orderId){
         ProductId productId = new ProductId();
-        OrderLineId lineId = new OrderLineId();
-        gateway.send((new AddOrderLineCommand(lineId, productId, orderId, "Widget", BigDecimal.ONE, 10)), new CommandCallback<Object>() {
-            @Override
-            public void onSuccess(Object o) {
-                System.out.println("Add Order Line Success!");
-            }
+        AddOrderLineCommand addLineCommand =  new AddOrderLineCommand(productId, orderId, "Widget", BigDecimal.ONE, 10);
+        gateway.send(addLineCommand, newCallBackHandler());
+    }
 
-            @Override
-            public void onFailure(Throwable throwable) {
-                System.out.println("Add Order Line Fail! " + throwable.getMessage());
-            }
-        });
-        // and let's send some Commands on the CommandBus.
+    private CommandCallback<Object> newCallBackHandler()  {
+         return  new CommandCallback<Object>() {
+             @Override
+             public void onSuccess(Object o) {
+                 System.out.println("Command Success! :-)");
+             }
 
-        return "Greetings from Spring Boot3!";
+             @Override
+             public void onFailure(Throwable throwable) {
+                 System.out.println("Command Fail! :-(" + throwable.getMessage());
+             }
+         };
     }
     
 }

@@ -15,8 +15,8 @@ public class CreateOrderCommand {
 
     private final String productId;
 
-    public CreateOrderCommand(OrderId orderId, String productId) {
-        this.orderId = orderId;
+    public CreateOrderCommand(String productId) {
+        this.orderId = new OrderId();
         this.productId = productId;
     }
 

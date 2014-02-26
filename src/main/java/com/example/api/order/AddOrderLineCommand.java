@@ -14,8 +14,6 @@ import java.math.BigDecimal;
  */
 public class AddOrderLineCommand {
 
-
-    private final OrderLineId orderLineId;
     private final ProductId productId;
 
 
@@ -25,8 +23,7 @@ public class AddOrderLineCommand {
     private final BigDecimal price;
     private final Integer quantity;
 
-    public AddOrderLineCommand(OrderLineId orderLineId, ProductId productId, OrderId orderId, String description, BigDecimal price, Integer quantity) {
-        this.orderLineId = orderLineId;
+    public AddOrderLineCommand(ProductId productId, OrderId orderId, String description, BigDecimal price, Integer quantity) {
         this.productId = productId;
         this.orderId = orderId;
         this.description = description;
@@ -34,9 +31,6 @@ public class AddOrderLineCommand {
         this.quantity = quantity;
     }
 
-    public OrderLineId getOrderLineId() {
-        return orderLineId;
-    }
 
     public ProductId getProductId() {
         return productId;

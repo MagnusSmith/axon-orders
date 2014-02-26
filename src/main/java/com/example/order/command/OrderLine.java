@@ -22,12 +22,11 @@ public class OrderLine extends AbstractAnnotatedEntity {
     private final Integer quantity;
 
 
-    public OrderLine(OrderLineId orderLineId, ProductId productId, String description, BigDecimal price, int quantity){
+    public OrderLine(ProductId productId, String description, BigDecimal price, int quantity){
         this.productId = productId;
         this.price = price;
         this.quantity = quantity;
-
-        this.orderLineId = orderLineId;
+        this.orderLineId = new OrderLineId();
         this.description = description;
     }
 
@@ -50,4 +49,6 @@ public class OrderLine extends AbstractAnnotatedEntity {
     public ProductId getProductId() {
         return productId;
     }
+
+
 }
