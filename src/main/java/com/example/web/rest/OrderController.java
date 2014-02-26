@@ -1,4 +1,4 @@
-package com.example.order.rest;
+package com.example.web.rest;
 
 import com.example.api.order.AddOrderLineCommand;
 import com.example.api.order.CreateOrderCommand;
