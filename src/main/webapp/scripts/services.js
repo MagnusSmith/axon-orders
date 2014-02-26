@@ -1,7 +1,9 @@
 
-axonOrdersApp.factory('Products', ['$resource',
+axonOrdersApp.factory('Product', ['$resource',
     function ($resource) {
-        return $resource('rest/products', {}, {
-            'get': { method: 'GET', isArray: true}
+        return $resource('rest/products/:productId', {}, {
+            'findAll': { method: 'GET', isArray: true,  params:{productId:''}},
+            'findOne': {method: 'GET'},
+            'deleteOne': {method:'DELETE'}
         });
     }]);

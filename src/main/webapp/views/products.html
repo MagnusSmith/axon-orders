@@ -1,0 +1,22 @@
+<div>
+    <div style="text-align: right;">
+        <button ng-click="newProductView()" class="btn btn-default">New Product</button>
+    </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Model Number</th>
+            <th>Brand</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="product in products">
+                <td>{{product.modelNumber}}</td>
+                <td>{{product.brand}}</td>
+                <td>{{product.id}}</td>
+                <td style="text-align: right"><button class="btn btn-default" ng-click="editProductView(product.id)">Edit</button>
+                    <button class="btn btn-default" ng-click="deleteProduct(product.id)">Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

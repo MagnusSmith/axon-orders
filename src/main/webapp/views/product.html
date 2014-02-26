@@ -1,19 +1,18 @@
-<div>
-    <div style="text-align: right;">
-        <button ng-click="newProductView()" class="btn btn-default">New Product</button>
-    </div>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Model Number</th>
-            <th>Brand</th>
-        </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="product in products">
-                <td>{{product.modelNumber}}</td>
-                <td>{{product.brand}}</td>
-            </tr>
-        </tbody>
-    </table>
+<div style="width: 25%">
+    <form class="form" role="form">
+        <input type="hidden" value="{{product.id}}"/>
+        <div class="form-group">
+            <label for="product-model-number">Model Number</label>
+            <input type="text" class="form-control" id="product-model-number" value="{{product.modelNumber}}">
+        </div>
+
+        <div class="form-group">
+            <label for="product-brand">Brand</label>
+            <input type="text" class="form-control" id="product-brand" value="{{product.brand}}">
+        </div>
+        <div style="text-align: right">
+            <button type="submit" class="btn btn-default">Save</button>
+            <button type="button" ng-click="cancel()" class="btn btn-default">Cancel</button>
+        </div>
+    </form>
 </div>

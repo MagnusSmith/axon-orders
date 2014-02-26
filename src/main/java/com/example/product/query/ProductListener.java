@@ -1,6 +1,7 @@
 package com.example.product.query;
 
 import com.example.api.product.ProductCreatedEvent;
+import com.example.api.product.ProductDeletedEvent;
 import com.example.component.Loggable;
 import org.axonframework.eventhandling.annotation.EventHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,12 @@ public class ProductListener {
     public void handleProductCreatedEvent(ProductCreatedEvent event) {
         log.info("Handling ProductCreatedEvent");
         repository.saveAndFlush(new ProductEntry(event.getProductId(), event.getModelNumer(), event.getBrand()));
+    }
+
+    @EventHandler
+    public void handleProductDeletedEvent(ProductDeletedEvent event) {
+        log.info("Handling ProductDeletedEvent");
+        repository.delete(event.getProductId());
     }
 
 }

@@ -1,6 +1,7 @@
 package com.example.product.command;
 
 import com.example.api.product.ProductCreatedEvent;
+import com.example.api.product.ProductDeletedEvent;
 import com.example.api.product.ProductId;
 import com.example.component.Loggable;
 import org.axonframework.eventsourcing.annotation.AbstractAnnotatedAggregateRoot;
@@ -26,9 +27,18 @@ public class Product extends AbstractAnnotatedAggregateRoot {
         apply(new ProductCreatedEvent(identifier, modelNumber, brand));
     }
 
+    public void deleteProduct(ProductId identifier) {
+        apply(new ProductDeletedEvent(identifier));
+    }
 
     @EventSourcingHandler
     public void on(ProductCreatedEvent event) {
+        this.productId = event.getProductId();
+    }
+
+    //TODO not sure about this - should we handle all events in this way??
+    @EventSourcingHandler
+    public void on(ProductDeletedEvent event) {
         this.productId = event.getProductId();
     }
 

@@ -8,13 +8,14 @@ axonOrdersApp
     .config(['$routeProvider', '$httpProvider',
     function($routeProvider, $httpProvider) {
         $routeProvider
-            .when('/product', {
-                templateUrl: 'views/product.html',
-                controller: 'ProductController'
+            .when('/products', {
+                templateUrl: 'views/products.html',
+                controller: 'ProductsController'
             }).when('/test', {
                 template:"This is a test"
-            }).when('/newProduct', {
-                templateUrl: 'views/newProduct.html'
+            }).when('/product/:productId?', {
+                templateUrl: 'views/product.html',
+                controller: 'ProductController'
             }).otherwise({
                 redirectTo:'/'
             });

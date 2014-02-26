@@ -1,5 +1,6 @@
 package com.example.product.command;
 
+import com.example.api.product.DeleteProductCommand;
 import com.example.component.Loggable;
 import com.example.api.product.CreateProductCommand;
 import org.axonframework.commandhandling.annotation.CommandHandler;
@@ -31,4 +32,8 @@ public class ProductCommandHandler {
         repository.add(product);
     }
 
+    public void handle(final DeleteProductCommand deleteProductCommand) {
+        log.info("Received a command to delete a product {}" , deleteProductCommand.getProductId());
+        Product product = repository.load(deleteProductCommand.getProductId());
+    }
 }
