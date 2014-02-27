@@ -3,6 +3,7 @@ package com.example.web.rest;
 import com.example.api.order.AddOrderLineCommand;
 import com.example.api.order.CreateOrderCommand;
 import com.example.api.order.OrderId;
+import com.example.api.product.CreateProductCommand;
 import com.example.api.product.ProductId;
 import org.axonframework.commandhandling.CommandCallback;
 import org.axonframework.commandhandling.gateway.CommandGateway;
@@ -24,11 +25,12 @@ public class OrderController {
     CommandGateway gateway;
 
 
+
     @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public OrderId createOrder() {
-        CreateOrderCommand  createOrder = new CreateOrderCommand("Product One");
-        gateway.send(createOrder, newCallBackHandler());
-        return createOrder.getOrderId();
+    public OrderId create() {
+        CreateOrderCommand  order = new CreateOrderCommand("Product One");
+        gateway.sendAndWait(order);
+        return order.getOrderId();
     }
 
 
@@ -36,7 +38,7 @@ public class OrderController {
     public void addOrderLine(@PathVariable OrderId orderId){
         ProductId productId = new ProductId();
         AddOrderLineCommand addLineCommand =  new AddOrderLineCommand(productId, orderId, "Widget", BigDecimal.ONE, 10);
-        gateway.send(addLineCommand, newCallBackHandler());
+        gateway.sendAndWait(addLineCommand);
     }
 
     private CommandCallback<Object> newCallBackHandler()  {
