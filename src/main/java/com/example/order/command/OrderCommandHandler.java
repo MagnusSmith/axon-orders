@@ -64,16 +64,16 @@ public class OrderCommandHandler {
 
     @CommandHandler
     public void handle(final AddOrderLineCommand command) {
-        log.info("Received a command to Add OrderLine");
+        log.info("Received a command to Add OrderLineEntry");
         Order order = repository.load(command.getOrderId());
-        order.addLine(command.getProductId(), command.getDescription(), command.getPrice(), command.getQuantity());
+        order.addLine(command.getDetails());
 
     }
 
 
     @CommandHandler
     public void handle(final RemoveOrderLineCommand command) {
-        log.info("Received a command to remove OrderLine") ;
+        log.info("Received a command to remove OrderLineEntry") ;
         Order order = repository.load(command.getOrderId());
         order.removeLine(command.getOrderLineId());
 

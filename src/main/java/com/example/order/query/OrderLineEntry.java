@@ -1,6 +1,8 @@
 package com.example.order.query;
 
+import com.example.api.order.OrderLineDetails;
 import com.example.api.order.OrderLineId;
+import com.example.api.product.ProductId;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -14,46 +16,52 @@ import java.math.BigDecimal;
  *
  */
 @Entity
-public class OrderLineEntry {
+public class OrderLineEntry implements OrderLineDetails {
 
     @Id
-    private OrderLineId orderLineId;
+    private OrderLineId lineId;
+    private ProductId productId;
     private String description;
     private BigDecimal price;
     private Integer quantity;
 
 
-    OrderLineEntry(){};
-
-
-
-    public BigDecimal totalPrice(){
-        return BigDecimal.ZERO;
+    private OrderLineEntry() {
     }
 
-    public static class Builder {
-        private final OrderLineId orderLineId;
-        private String description;
-        private BigDecimal price;
-        private Integer quantity;
+    ;
 
-        public Builder(OrderLineId id){
-             this.orderLineId = id;
-        }
+    public OrderLineEntry(ProductId productId, String description, BigDecimal price, Integer quantity) {
+        this.productId = productId;
+        this.description = description;
+        this.price = price;
+        this.quantity = quantity;
+        this.lineId = new OrderLineId();
+    }
 
-        public Builder description(String description){
-            this.description = description;
-            return this;
-        }
 
-        public Builder price(BigDecimal price){
-            this.price = price;
-            return this;
-        }
+    @Override
+    public OrderLineId getLineId() {
+        return lineId;
+    }
 
-        public Builder quantity(int quantity){
-            this.quantity = quantity;
-            return this;
-        }
+    @Override
+    public ProductId getProductId() {
+        return productId;
+    }
+
+    @Override
+    public String getDescription() {
+        return description;
+    }
+
+    @Override
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    @Override
+    public Integer getQuantity() {
+        return quantity;
     }
 }

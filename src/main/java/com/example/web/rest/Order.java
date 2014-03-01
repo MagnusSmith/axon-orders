@@ -18,7 +18,7 @@ public class Order implements Serializable {
 
     private List orderLines;
 
-    private UUID identifier;
+    private String identifier;
 
 
 }
