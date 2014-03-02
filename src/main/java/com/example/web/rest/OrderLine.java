@@ -2,6 +2,7 @@ package com.example.web.rest;
 
 import com.example.api.order.OrderLineDetails;
 import com.example.api.order.OrderLineFactory;
+import com.example.api.order.OrderLineId;
 import com.example.api.product.ProductId;
 
 import java.io.Serializable;
@@ -12,22 +13,24 @@ import java.math.BigDecimal;
  * User: magnus.smith
  * Date: 28/02/14
  * Time: 14:18
- *
  */
 public class OrderLine implements Serializable {
 
-    private  String description;
+    private String description;
 
-    private  BigDecimal price;
+    private BigDecimal price;
 
-    private  String productIdentifier;
+    private String productIdentifier;
 
     private int quantity;
 
-    private  String identifier;
+    private String identifier;
 
 
-    private OrderLine(){};
+    private OrderLine() {
+    }
+
+    ;
 
     public OrderLine(String productIdentifier, String description, BigDecimal price, int quantity) {
         this.description = description;
@@ -56,11 +59,15 @@ public class OrderLine implements Serializable {
 
 
     public OrderLineDetails toOrderLineDetails() {
-        return OrderLineFactory.create(new ProductId(), description, price, quantity);
+        if (identifier != null) {
+            return OrderLineFactory.create(new OrderLineId(identifier), new ProductId(productIdentifier), description, price, quantity);
+        } else {
+            return OrderLineFactory.create(new ProductId(productIdentifier), description, price, quantity);
+        }
     }
 
-    public static OrderLine fromOrderLineDetails(OrderLineDetails details){
-         OrderLine line = new OrderLine();
+    public static OrderLine fromOrderLineDetails(OrderLineDetails details) {
+        OrderLine line = new OrderLine();
         line.description = details.getDescription();
         line.identifier = details.getLineId().toString();
         line.productIdentifier = details.getProductId().toString();

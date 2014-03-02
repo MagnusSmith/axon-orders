@@ -14,6 +14,10 @@ import java.math.BigDecimal;
  */
 public class OrderLineFactory {
 
+    public static OrderLineDetails create(OrderLineId lineId, ProductId productId, String description, BigDecimal price, Integer quantity) {
+        return new OrderLineEntry(lineId, productId, description, price, quantity);
+    }
+
     public static OrderLineDetails create(ProductId productId, String description, BigDecimal price, Integer quantity) {
         return new OrderLineEntry(productId, description, price, quantity);
     }

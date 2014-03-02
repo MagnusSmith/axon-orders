@@ -11,9 +11,10 @@ import java.util.List;
  *
  */
 public interface OrderDetails {
+
     OrderId getOrderId();
 
-    Date getdDateTimeOfSubmission();
+    Date getDateTimeOfSubmission();
 
-    List<OrderLineDetails> getLines();
+    List<? extends OrderLineDetails> getLines();
 }

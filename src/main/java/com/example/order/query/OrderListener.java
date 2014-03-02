@@ -28,7 +28,8 @@ public class OrderListener {
     @EventHandler
     public void handleOrderCreatedEvent(OrderCreatedEvent event){
        log.info("handling OrderCreatedEvent");
-        repository.saveAndFlush(new OrderEntry(event.getOrderId()));
-    //    throw new RuntimeException("RuntimeException from OrderListener handleOrderCreatedEvent");
+        OrderEntry entry = (OrderEntry)event.getOrderDetails();
+        repository.saveAndFlush( entry );
+       log.info("saved");
     }
 }

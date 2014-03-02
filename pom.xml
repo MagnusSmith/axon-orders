@@ -30,6 +30,7 @@
         <maven-resources-plugin.version>2.6</maven-resources-plugin.version>
 
         <jackson.version>2.3.1</jackson.version>
+        <junit.version>4.11</junit.version>
     </properties>
 
     <dependencyManagement>
@@ -232,6 +233,13 @@
             <version>${jackson.version}</version>
         </dependency>
 
+        <!-- Test -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
 

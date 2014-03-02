@@ -2,6 +2,7 @@ package com.example.order.command;
 
 import com.example.api.order.*;
 import com.example.component.Loggable;
+import com.example.order.query.OrderQueryRepository;
 import org.axonframework.commandhandling.annotation.CommandHandler;
 import org.axonframework.repository.Repository;
 import org.slf4j.Logger;
@@ -31,10 +32,11 @@ public class OrderCommandHandler {
 
 
     @CommandHandler
-    public void handle(final CreateOrderCommand command) {
-        log.info("Received a command for a new OrderEntry with Product : {}", command.getProductId());
-        Order order = new Order(command.getOrderId(), command.getProductId());
+    public OrderId  handle(final CreateOrderCommand command) {
+        log.info("Received a command for a new Order with id : {}", command.getDetails().getOrderId().toString());
+        Order order = new Order(command.getDetails());
         repository.add(order);
+        return order.getIdentifier();
     }
 
 
@@ -62,21 +64,5 @@ public class OrderCommandHandler {
     }
 
 
-    @CommandHandler
-    public void handle(final AddOrderLineCommand command) {
-        log.info("Received a command to Add OrderLineEntry");
-        Order order = repository.load(command.getOrderId());
-        order.addLine(command.getDetails());
-
-    }
-
-
-    @CommandHandler
-    public void handle(final RemoveOrderLineCommand command) {
-        log.info("Received a command to remove OrderLineEntry") ;
-        Order order = repository.load(command.getOrderId());
-        order.removeLine(command.getOrderLineId());
-
-    }
 
 }

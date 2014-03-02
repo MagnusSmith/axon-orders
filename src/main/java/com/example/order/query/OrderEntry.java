@@ -1,9 +1,14 @@
 package com.example.order.query;
 
+import com.example.api.order.OrderDetails;
 import com.example.api.order.OrderId;
+import com.example.api.order.OrderLineDetails;
+import com.example.web.rest.OrderLine;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
 * Created with IntelliJ IDEA.
@@ -13,16 +18,41 @@ import javax.persistence.Id;
 *
 */
 @Entity
-public class OrderEntry {
+public class OrderEntry implements OrderDetails {
 
     @Id
     private OrderId id;
 
+    private Date dateTimeOfSubmission;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval=true, fetch = FetchType.EAGER)
+    private List<OrderLineEntry> lines = new ArrayList<>();
 
 
-    OrderEntry(){};
 
-    OrderEntry(OrderId id){
+
+    private OrderEntry(){};
+
+    public OrderEntry(OrderId id, Date dateTimeOfSubmission, List<OrderLineEntry> lines){
         this.id = id;
+        this.dateTimeOfSubmission = dateTimeOfSubmission;
+        this.lines = lines;
     }
+
+    @Override
+    public OrderId getOrderId() {
+        return id;
+    }
+
+    @Override
+    public Date getDateTimeOfSubmission() {
+        return dateTimeOfSubmission;
+    }
+
+    @Override
+    public List<? extends OrderLineDetails> getLines() {
+        return lines;
+    }
+
+
 }

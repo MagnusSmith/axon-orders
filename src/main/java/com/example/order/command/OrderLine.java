@@ -1,6 +1,6 @@
 package com.example.order.command;
 
-import com.example.api.order.OrderLineEntry;
+import com.example.api.order.OrderLineDetails;
 import com.example.api.order.OrderLineId;
 import org.axonframework.eventsourcing.annotation.AbstractAnnotatedEntity;
 
@@ -13,22 +13,16 @@ import org.axonframework.eventsourcing.annotation.AbstractAnnotatedEntity;
  */
 public class OrderLine extends AbstractAnnotatedEntity {
 
-    private final OrderLineId orderLineId;
-    private final OrderLineEntry details;
+
+    private final OrderLineDetails details;
 
 
 
-    public OrderLine(OrderLineEntry details){
+    public OrderLine(OrderLineDetails details){
         this.details = details;
-        this.orderLineId = new OrderLineId();
     }
 
-    public OrderLineId getOrderLineId() {
-        return orderLineId;
-    }
-
-
-    public OrderLineEntry getDetails() {
+    public OrderLineDetails getDetails() {
         return details;
     }
 }

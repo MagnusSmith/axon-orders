@@ -13,11 +13,11 @@ public class CreateOrderCommand {
     @TargetAggregateIdentifier
     private final OrderId orderId;
 
-    private final String productId;
+    private final OrderDetails details;
 
-    public CreateOrderCommand(String productId) {
-        this.orderId = new OrderId();
-        this.productId = productId;
+    public CreateOrderCommand(OrderDetails details) {
+        this.orderId = details.getOrderId();
+        this.details = details;
     }
 
     public OrderId getOrderId() {
@@ -25,8 +25,8 @@ public class CreateOrderCommand {
     }
 
 
-    public String getProductId() {
-        return productId;
+    public OrderDetails getDetails() {
+        return details;
     }
 
 }

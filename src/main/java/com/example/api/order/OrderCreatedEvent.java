@@ -9,20 +9,17 @@ package com.example.api.order;
  */
 public class OrderCreatedEvent {
 
-    private final OrderId orderId;
-    private final String productId;
+    private OrderDetails details;
 
-    public OrderCreatedEvent(OrderId orderId, String productId) {
-        this.orderId = orderId;
-        this.productId = productId;
+
+    public OrderCreatedEvent(OrderDetails details) {
+        this.details = details;
     }
 
-    public String getProductId() {
-        return productId;
+    public OrderDetails getOrderDetails() {
+        return details;
     }
 
-    public OrderId getOrderId() {
-        return orderId;
-    }
+
 
 }
