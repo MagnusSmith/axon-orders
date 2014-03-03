@@ -1,6 +1,7 @@
 package com.example.product.command;
 
 import com.example.api.product.DeleteProductCommand;
+import com.example.api.product.UpdateProductCommand;
 import com.example.component.Loggable;
 import com.example.api.product.CreateProductCommand;
 import org.axonframework.commandhandling.annotation.CommandHandler;
@@ -28,12 +29,21 @@ public class ProductCommandHandler {
     @CommandHandler
     public void handle(final CreateProductCommand createProductCommand) {
         log.info("Received a command for a new Product {}", createProductCommand.getProductId());
-        Product product = new Product(createProductCommand.getProductId(), createProductCommand.getModelNumber(), createProductCommand.getBrand());
+        Product product = new Product(createProductCommand.getProductDetails());
         repository.add(product);
     }
 
+    @CommandHandler
     public void handle(final DeleteProductCommand deleteProductCommand) {
         log.info("Received a command to delete a product {}" , deleteProductCommand.getProductId());
         Product product = repository.load(deleteProductCommand.getProductId());
+        product.delete();
+    }
+
+    @CommandHandler
+    public void handle(final UpdateProductCommand updateProductCommand) {
+        log.info("Received a command to update a product {}", updateProductCommand.getProductId());
+        Product product = repository.load(updateProductCommand.getProductId());
+        product.update(updateProductCommand.getProductDetails());
     }
 }

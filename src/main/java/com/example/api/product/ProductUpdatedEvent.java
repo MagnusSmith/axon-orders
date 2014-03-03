@@ -1,13 +1,13 @@
 package com.example.api.product;
 
 /**
- * Created by michael.klos on 19/02/14.
+ * Created by michael.klos on 03/03/14.
  */
-public class ProductCreatedEvent {
+public class ProductUpdatedEvent {
 
     private final ProductDetails productDetails;
 
-    public ProductCreatedEvent(ProductDetails productDetails) {
+    public ProductUpdatedEvent(ProductDetails productDetails) {
         this.productDetails = productDetails;
     }
 

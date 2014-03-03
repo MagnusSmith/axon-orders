@@ -1,5 +1,6 @@
 package com.example.product.query;
 
+import com.example.api.product.ProductDetails;
 import com.example.api.product.ProductId;
 
 import javax.persistence.Entity;
@@ -10,7 +11,7 @@ import java.io.Serializable;
  * Created by michael.klos on 19/02/14.
  */
 @Entity
-public class ProductEntry implements Serializable {
+public class ProductEntry implements ProductDetails {
 
     @Id
     private ProductId id;
@@ -18,8 +19,6 @@ public class ProductEntry implements Serializable {
     private String modelNumber;
 
     private String brand;
-
-
 
     ProductEntry(){};
 
@@ -29,28 +28,18 @@ public class ProductEntry implements Serializable {
         this.brand = brand;
     }
 
-
-
-
     @Override
-    public String toString() {
-        return "Product{" +
-                "modelNumber='" + modelNumber + '\'' +
-                ", brand='" + brand + '\'' +
-                ", id='"+id+ '\'' +
-                "}";
-    }
-
-    // need getters for Jackson
     public String getModelNumber() {
         return modelNumber;
     }
 
+    @Override
     public String getBrand() {
         return brand;
     }
 
-    public String getId() {
-        return id.toString();
+    @Override
+    public ProductId getId() {
+        return id;
     }
 }

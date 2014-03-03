@@ -3,15 +3,14 @@ package com.example.web.rest.product;
 import com.example.api.product.CreateProductCommand;
 import com.example.api.product.DeleteProductCommand;
 import com.example.api.product.ProductId;
+import com.example.api.product.UpdateProductCommand;
 import com.example.product.command.Product;
 import com.example.product.query.ProductEntry;
+import com.example.product.query.ProductFactory;
 import com.example.product.query.ProductQueryRepository;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -20,7 +19,7 @@ import java.util.List;
  * Created by michael.klos on 19/02/14.
  */
 @RestController
-@RequestMapping("/rest")
+@RequestMapping("/rest/products")
 public class ProductController {
 
     @Autowired
@@ -30,56 +29,57 @@ public class ProductController {
     private ProductQueryRepository productQueryRepository;
 
 
-    private void init(){
-        gateway.send(new CreateProductCommand(new ProductId(), "Model 1", "Brand 1"));
-        gateway.send(new CreateProductCommand(new ProductId(),"Model 2","Brand 2"));
-        gateway.send(new CreateProductCommand(new ProductId(),"Model 3","Brand 3"));
-        gateway.send(new CreateProductCommand(new ProductId(),"Model 4","Brand 4"));
+    private void init() {
+        gateway.send(new CreateProductCommand(ProductFactory.create("Model 1", "Brand 1")));
+        gateway.send(new CreateProductCommand(ProductFactory.create("Model 2", "Brand 2")));
+        gateway.send(new CreateProductCommand(ProductFactory.create("Model 3", "Brand 3")));
+        gateway.send(new CreateProductCommand(ProductFactory.create("Model 4", "Brand 4")));
     }
 
-//    @RequestMapping("/product")
-//    public String createProduct(){
-//        gateway.send(new CreateProductCommand(new ProductId(),"Audi","S3"));
-//        return "Product has been created";
-//    }
 
     /**
      * Return all products in DB.
+     *
      * @return
      */
-    @RequestMapping(value = "/products",
-            method = RequestMethod.GET,
+    @RequestMapping(method = RequestMethod.GET,
             produces = "application/json")
-    public List<ProductEntry> getAllProducts() {
-        //TODO for test only
-        if(productQueryRepository.count() == 0){
-            init();
-        }
-        return productQueryRepository.findAll();
+    public List<ProductTO> getAllProducts() {
+        return ProductTO.fromProductsDetails(productQueryRepository.findAll());
     }
 
 
     /**
      * Get a product.
+     *
      * @param aProductId productId;
      * @return
      */
-    @RequestMapping(value = "/products/{aProductId}",
+    @RequestMapping(value = "/{aProductId}",
             method = RequestMethod.GET,
             produces = "application/json")
-    public ProductEntry getProductById(@PathVariable String aProductId) {
-        ProductId productId = new ProductId(aProductId);
-        return productQueryRepository.findOne(productId);
+    public ProductTO getProductById(@PathVariable String aProductId) {
+        return ProductTO.fromProductDetails(productQueryRepository.findOne(new ProductId(aProductId)));
     }
 
     /**
      * Delete a product.
+     *
      * @param aProductId
      */
-    @RequestMapping(value = "/products/{aProductId}",
+    @RequestMapping(value = "/{aProductId}",
             method = RequestMethod.DELETE)
     public void deleteProduct(@PathVariable String aProductId) {
-        ProductId productId = new ProductId(aProductId);
-        gateway.sendAndWait(new DeleteProductCommand(productId));
+        gateway.sendAndWait(new DeleteProductCommand(new ProductId(aProductId)));
+    }
+
+    @RequestMapping(method = RequestMethod.PUT)
+    public void updateProduct(@RequestBody ProductTO productTO) {
+        gateway.sendAndWait(new UpdateProductCommand(productTO.toProductDetails()));
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public void createProduct(@RequestBody ProductTO productTO) {
+        gateway.sendAndWait(new CreateProductCommand(productTO.toProductDetails()));
     }
 }

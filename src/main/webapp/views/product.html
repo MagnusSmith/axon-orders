@@ -1,14 +1,14 @@
 <div style="width: 25%">
-    <form class="form" role="form">
+    <form class="form" role="form" ng-submit="save()">
         <input type="hidden" value="{{product.id}}"/>
         <div class="form-group">
             <label for="product-model-number">Model Number</label>
-            <input type="text" class="form-control" id="product-model-number" value="{{product.modelNumber}}">
+            <input type="text" class="form-control" ng-model="product.modelNumber" id="product-model-number" value="{{product.modelNumber}}">
         </div>
 
         <div class="form-group">
             <label for="product-brand">Brand</label>
-            <input type="text" class="form-control" id="product-brand" value="{{product.brand}}">
+            <input type="text" class="form-control" ng-model="product.brand" id="product-brand" value="{{product.brand}}">
         </div>
         <div style="text-align: right">
             <button type="submit" class="btn btn-default">Save</button>

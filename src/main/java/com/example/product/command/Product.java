@@ -1,8 +1,6 @@
 package com.example.product.command;
 
-import com.example.api.product.ProductCreatedEvent;
-import com.example.api.product.ProductDeletedEvent;
-import com.example.api.product.ProductId;
+import com.example.api.product.*;
 import com.example.component.Loggable;
 import org.axonframework.eventsourcing.annotation.AbstractAnnotatedAggregateRoot;
 import org.axonframework.eventsourcing.annotation.AggregateIdentifier;
@@ -23,23 +21,22 @@ public class Product extends AbstractAnnotatedAggregateRoot {
 
     Product(){}
 
-    public Product(ProductId identifier, String modelNumber, String brand){
-        apply(new ProductCreatedEvent(identifier, modelNumber, brand));
+    public Product(ProductDetails productDetails){
+        apply(new ProductCreatedEvent(productDetails));
     }
 
-    public void deleteProduct(ProductId identifier) {
-        apply(new ProductDeletedEvent(identifier));
+    public void delete() {
+        markDeleted();
+        apply(new ProductDeletedEvent(productId));
+    }
+
+    public void update(ProductDetails productDetails) {
+        apply(new ProductUpdatedEvent(productDetails));
     }
 
     @EventSourcingHandler
     public void on(ProductCreatedEvent event) {
-        this.productId = event.getProductId();
-    }
-
-    //TODO not sure about this - should we handle all events in this way??
-    @EventSourcingHandler
-    public void on(ProductDeletedEvent event) {
-        this.productId = event.getProductId();
+        this.productId = event.getProductDetails().getId();
     }
 
     @Override
