@@ -1,5 +1,6 @@
 package com.example.order.query;
 
+import com.example.api.order.OrderCancelledEvent;
 import com.example.component.Loggable;
 import com.example.api.order.OrderCreatedEvent;
 import org.axonframework.eventhandling.annotation.EventHandler;
@@ -28,8 +29,11 @@ public class OrderListener {
     @EventHandler
     public void handleOrderCreatedEvent(OrderCreatedEvent event){
        log.info("handling OrderCreatedEvent");
-        OrderEntry entry = (OrderEntry)event.getOrderDetails();
-        repository.saveAndFlush( entry );
-       log.info("saved");
+        repository.saveAndFlush((OrderEntry)event.getOrderDetails());
+    }
+
+    @EventHandler
+    public void handleOrderCancelledEvent(OrderCancelledEvent event){
+         repository.delete(event.getOrderId());
     }
 }

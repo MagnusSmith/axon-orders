@@ -31,7 +31,7 @@ public class OrderLineEntry implements OrderLineDetails {
 
     ;
 
-    public OrderLineEntry(OrderLineId lineId, ProductId productId, String description, BigDecimal price, Integer quantity) {
+    OrderLineEntry(OrderLineId lineId, ProductId productId, String description, BigDecimal price, Integer quantity) {
         this.productId = productId;
         this.description = description;
         this.price = price;
@@ -39,7 +39,7 @@ public class OrderLineEntry implements OrderLineDetails {
         this.lineId = lineId;
     }
 
-    public OrderLineEntry(ProductId productId, String description, BigDecimal price, Integer quantity) {
+    OrderLineEntry(ProductId productId, String description, BigDecimal price, Integer quantity) {
         this.productId = productId;
         this.description = description;
         this.price = price;

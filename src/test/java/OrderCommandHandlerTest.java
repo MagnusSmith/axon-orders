@@ -6,7 +6,7 @@ import org.axonframework.test.FixtureConfiguration;
  * User: magnus.smith
  * Date: 10/02/14
  * Time: 12:19
- * Copyright Advanced Computer Software Group 2014
+ *
  */
 public class OrderCommandHandlerTest {
     private FixtureConfiguration fixture;

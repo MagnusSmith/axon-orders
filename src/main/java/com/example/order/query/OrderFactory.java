@@ -1,5 +1,8 @@
-package com.example.api.order;
+package com.example.order.query;
 
+import com.example.api.order.OrderDetails;
+import com.example.api.order.OrderId;
+import com.example.api.order.OrderLineDetails;
 import com.example.order.query.OrderEntry;
 import com.example.order.query.OrderLineEntry;
 

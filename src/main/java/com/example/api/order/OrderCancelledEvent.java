@@ -14,4 +14,8 @@ public class OrderCancelledEvent {
     public OrderCancelledEvent(OrderId orderId) {
         this.orderId = orderId;
     }
+
+    public OrderId getOrderId() {
+        return orderId;
+    }
 }

@@ -61,6 +61,11 @@ public class OrderCommandHandler {
     @CommandHandler
     public void handle(final CancelOrderCommand command) {
         log.debug("Received a command to cancel Order");
+        Order order = repository.load(command.getOrderId());
+        order.cancel();
+
+
+
     }
 
 

@@ -12,8 +12,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java-version>1.7</java-version>
-        <axon.framework.version>2.1</axon.framework.version>
-        <org.springframework.version>4.0.1.RELEASE</org.springframework.version>
+        <axon.framework.version>2.1.1</axon.framework.version>
+        <org.springframework.version>4.0.2.RELEASE</org.springframework.version>
         <bonecp.version>0.7.1.RELEASE</bonecp.version>
         <hsql.version>2.3.0</hsql.version>
         <hibernate.version>4.3.1.Final</hibernate.version>
@@ -23,6 +23,7 @@
         <org.slf4j.version>1.7.5</org.slf4j.version>
         <ch.qos.logback.version>1.0.13</ch.qos.logback.version>
         <logback.version>1.0.11</logback.version>
+        <org.thymeleaf-version>2.1.2.RELEASE</org.thymeleaf-version>
 
         <!-- maven plugins -->
         <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
@@ -38,7 +39,7 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-framework-bom</artifactId>
-                <version>4.0.0.RELEASE</version>
+                <version>${org.springframework.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -78,6 +79,11 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <scope>test</scope>
+        </dependency>
 
 
         <dependency>
@@ -92,6 +98,7 @@
             <version>6.0</version>
             <scope>provided</scope>
         </dependency>
+
 
 
         <!-- Axon dependencies -->
@@ -233,13 +240,45 @@
             <version>${jackson.version}</version>
         </dependency>
 
+        <!-- View -->
+        <dependency>
+            <groupId>org.thymeleaf</groupId>
+            <artifactId>thymeleaf</artifactId>
+            <version>${org.thymeleaf-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.thymeleaf</groupId>
+            <artifactId>thymeleaf-spring4</artifactId>
+            <version>${org.thymeleaf-version}</version>
+        </dependency>
+
+
         <!-- Test -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.9.5</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.3.2</version>
+            <scope>test</scope>
+        </dependency>
+
+
     </dependencies>
 
 

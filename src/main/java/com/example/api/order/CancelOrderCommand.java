@@ -17,4 +17,7 @@ public class CancelOrderCommand  {
     }
 
 
+    public OrderId getOrderId() {
+        return orderId;
+    }
 }

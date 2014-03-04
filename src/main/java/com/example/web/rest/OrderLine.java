@@ -1,7 +1,7 @@
 package com.example.web.rest;
 
 import com.example.api.order.OrderLineDetails;
-import com.example.api.order.OrderLineFactory;
+import com.example.order.query.OrderLineFactory;
 import com.example.api.order.OrderLineId;
 import com.example.api.product.ProductId;
 

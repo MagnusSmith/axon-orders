@@ -1,5 +1,7 @@
-package com.example.api.order;
+package com.example.order.query;
 
+import com.example.api.order.OrderLineDetails;
+import com.example.api.order.OrderLineId;
 import com.example.api.product.ProductId;
 import com.example.order.query.OrderLineEntry;
 
@@ -10,7 +12,7 @@ import java.math.BigDecimal;
  * User: magnus.smith
  * Date: 28/02/14
  * Time: 15:46
- * Copyright Advanced Computer Software Group 2014
+ *
  */
 public class OrderLineFactory {
 

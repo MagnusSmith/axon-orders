@@ -46,6 +46,10 @@ public class Order extends AbstractAnnotatedAggregateRoot {
         apply(new OrderCreatedEvent(orderDetails));
     }
 
+    public void cancel(){
+        markDeleted();
+        apply(new OrderCancelledEvent(orderId));
+    }
 
 //    public void addLine(OrderLineDetails details){
 //        OrderLine line = new OrderLine(details);

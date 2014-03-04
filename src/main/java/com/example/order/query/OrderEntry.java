@@ -33,7 +33,7 @@ public class OrderEntry implements OrderDetails {
 
     private OrderEntry(){};
 
-    public OrderEntry(OrderId id, Date dateTimeOfSubmission, List<OrderLineEntry> lines){
+    OrderEntry(OrderId id, Date dateTimeOfSubmission, List<OrderLineEntry> lines){
         this.id = id;
         this.dateTimeOfSubmission = dateTimeOfSubmission;
         this.lines = lines;

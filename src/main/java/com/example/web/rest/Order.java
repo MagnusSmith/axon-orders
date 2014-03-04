@@ -1,6 +1,7 @@
 package com.example.web.rest;
 
 import com.example.api.order.*;
+import com.example.order.query.OrderFactory;
 import com.google.common.base.Function;
 import com.google.common.collect.FluentIterable;
 
