@@ -3,9 +3,12 @@ package com.example.web.rest;
 
 import com.example.api.order.CancelOrderCommand;
 import com.example.api.order.CreateOrderCommand;
+import com.example.api.order.OrderDetails;
 import com.example.api.order.OrderId;
 import com.example.component.Loggable;
 import com.example.order.query.OrderQueryRepository;
+import com.google.common.base.Function;
+import com.google.common.collect.FluentIterable;
 import org.axonframework.commandhandling.CommandCallback;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.repository.AggregateNotFoundException;
@@ -16,6 +19,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.util.List;
 
 
 @RestController
@@ -69,6 +74,19 @@ public class OrderController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Order find(@PathVariable String id) {
         return Order.fromOrderDetails(orderQuery.findOne(new OrderId(id)));
+    }
+
+
+    @RequestMapping(method = RequestMethod.GET)
+    public List<Order> findAll() {
+        return FluentIterable
+                .from(orderQuery.findAll())
+                .transform(new Function<OrderDetails, Order>() {
+                    public Order apply(OrderDetails details) {
+                        return Order.fromOrderDetails(details);
+                    }
+                }).toList();
+
     }
 
 
