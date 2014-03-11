@@ -1,6 +1,7 @@
 package com.example.web.ui.home;
 
 import com.example.component.Loggable;
+import com.example.config.layout.Layout;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,9 +15,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Copyright Advanced Computer Software Group 2014
  */
 @Controller
+//@Layout(value = "layouts/blank")
 public class HomeController {
     @Loggable
     private Logger log;
+
+
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String index() {
