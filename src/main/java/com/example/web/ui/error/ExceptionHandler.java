@@ -1,4 +1,4 @@
-package com.example.error;
+package com.example.web.ui.error;
 
 import com.google.common.base.Throwables;
 import org.springframework.web.bind.annotation.ControllerAdvice;

@@ -1,4 +1,4 @@
-package com.example.web.ui.home;
+package com.example.web.ui.customer.home;
 
 import com.example.component.Loggable;
 import com.example.config.layout.Layout;
@@ -15,15 +15,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Copyright Advanced Computer Software Group 2014
  */
 @Controller
-//@Layout(value = "layouts/blank")
-public class HomeController {
+@Layout(value = "/customer/layouts/default")
+@RequestMapping("/customer/home")
+public class CustomerHomeController {
     @Loggable
     private Logger log;
 
 
-
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public String index() {
-        return "home/home";
+        return "customer/home/home";
     }
 }

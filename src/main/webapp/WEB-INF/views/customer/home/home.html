@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<div class="container" th:fragment="content">
+    <!-- /* Handle the flash message */-->
+    <th:block th:if="${message != null}">
+        <div th:replace="customer/fragments/alert :: alert (type=${#strings.toLowerCase(message.type)}, message=${message.message})"> </div>
+    </th:block>
+    <div class="hero-unit">
+        <h1>Welcome to the Axon-Orders</h1>
+        <h2>Customer Home</h2>
+        <p>
+
+            This application provides a proof of concept of the following technologies.
+
+        <ol>
+            <li>Spring 4</li>
+            <li>Axon Framework</li>
+            <li>Thymeleaf</li>
+        </ol>
+        </p>
+        <p>
+
+        </p>
+    </div>
+</div>
+</body>
+</html>

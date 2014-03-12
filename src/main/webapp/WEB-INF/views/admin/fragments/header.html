@@ -21,8 +21,8 @@
                 <li><a href="#order">Orders</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-           <!--     <li th:if="${#authorization.expression('!isAuthenticated()')}"><a href="/signin" th:href="@{/signin}">Sign in</a></li>
-                <li th:if="${#authorization.expression('isAuthenticated()')}"><a href="/logout" th:href="@{/logout}">Logout</a></li>     -->
+                <li th:if="${#authorization.expression('!isAuthenticated()')}"><a href="/signin" th:href="@{/signin}">Sign in</a></li>
+                <li th:if="${#authorization.expression('isAuthenticated()')}"><a href="/logout" th:href="@{/logout}">Logout</a></li>
             </ul>
         </div>
         <!--/.nav-collapse -->

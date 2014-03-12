@@ -2,6 +2,7 @@ package com.example.config;
 
 import org.springframework.core.annotation.Order;
 import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import javax.servlet.Filter;
@@ -17,7 +18,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class<?>[] {ApplicationConfig.class, AxonConfig.class, DataSourceConfig.class, JpaConfig.class};
+        return new Class<?>[] {ApplicationConfig.class, AxonConfig.class, DataSourceConfig.class, JpaConfig.class, SecurityConfig.class};
     }
 
     @Override
@@ -30,6 +31,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
         CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
         characterEncodingFilter.setEncoding("UTF-8");
         characterEncodingFilter.setForceEncoding(true);
+      //  return new Filter[] {characterEncodingFilter, new DelegatingFilterProxy("springSecurityFilterChain")};
         return new Filter[] {characterEncodingFilter};
     }
 
