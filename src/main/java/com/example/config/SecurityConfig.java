@@ -28,19 +28,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return successHandler;
     }
 
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth
-//                .inMemoryAuthentication()
-//                .withUser("user").password("password").roles("CUSTOMER_ROLE").and()
-//                .withUser("admin").password("password").roles("ADMIN_ROLE");
-//    }
-//
-//    @Bean
-//    @Override
-//    public AuthenticationManager authenticationManagerBean() throws Exception {
-//        return super.authenticationManagerBean();
-//    }
 
 
     @Autowired
@@ -74,7 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll();
 
        http.exceptionHandling().accessDeniedPage("/signin");
-       http.jee().
+
 
 
     }

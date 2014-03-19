@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-
+<head th:replace="templates/default :: resources" />
 <body>
-<div class="container" th:fragment="content">
+<div th:replace="templates/admin/default :: header" />
+<div >
     <!-- /* Handle the flash message */-->
     <th:block th:if="${message != null}">
-        <div th:replace="fragments/alert :: alert (type=${#strings.toLowerCase(message.type)}, message=${message.message})"> </div>
+        <div th:replace="templates/default :: alert (type=${#strings.toLowerCase(message.type)}, message=${message.message})"> </div>
     </th:block>
     <div class="hero-unit">
         <h1>Welcome to the Axon-Orders</h1>
@@ -26,5 +27,6 @@
         </p>
     </div>
 </div>
+<div th:replace="templates/admin/default :: footer"/>
 </body>
 </html>
