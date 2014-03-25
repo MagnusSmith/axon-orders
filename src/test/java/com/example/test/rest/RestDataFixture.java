@@ -1,6 +1,6 @@
 package com.example.test.rest;
 
-import com.example.web.rest.Order;
+import com.example.web.ui.order.Order;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

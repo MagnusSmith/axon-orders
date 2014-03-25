@@ -1,9 +1,9 @@
 package com.example.config;
 
 import com.example.Application;
-import com.example.order.command.Order;
-import com.example.order.command.OrderCommandHandler;
-import com.example.product.command.Product;
+import com.example.cqrs.concrete.order.command.Order;
+import com.example.cqrs.concrete.order.command.OrderCommandHandler;
+import com.example.cqrs.concrete.product.command.Product;
 import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.commandhandling.SimpleCommandBus;
 import org.axonframework.commandhandling.annotation.AnnotationCommandHandlerBeanPostProcessor;

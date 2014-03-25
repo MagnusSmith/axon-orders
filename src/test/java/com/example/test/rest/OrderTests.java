@@ -2,7 +2,7 @@ package com.example.test.rest;
 
 
 
-import com.example.web.rest.Order;
+import com.example.web.ui.order.Order;
 import org.springframework.http.*;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;

@@ -3,11 +3,7 @@
 	<contextName>axon-orders</contextName>
 
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <filter class="ch.qos.logback.classic.filter.LevelFilter">
-            <level>INFO</level>
-            <onMatch>ACCEPT</onMatch>
-            <onMismatch>DENY</onMismatch>
-        </filter>
+
 		<encoder>
 			<pattern>
 				%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{32} - %msg%n
@@ -16,17 +12,10 @@
 	</appender>
 
 	<jmxConfigurator />
-	<root level="INFO">
+	<root level="ALL">
 		<appender-ref ref="STDOUT" />
 	</root>
 
-	<logger name="axon-orders" level="DEBUG" />
-    <logger name="org.apache.http.wire" level="DEBUG"/>
-    <logger name="org.apache.commons.httpclient" level="DEBUG"/>
+	<logger name="axon-orders" level="ALL" />
 
-
-    <logger name="httpclient.wire.header" level="DEBUG"/>
-
-
-    <logger name="httpclient.wire.content" level="DEBUG"/>
 </configuration>

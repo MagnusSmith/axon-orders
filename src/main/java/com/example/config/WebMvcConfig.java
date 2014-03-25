@@ -62,8 +62,8 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
         templateEngine.setTemplateResolver(templateResolver());
         templateEngine.addDialect(new SpringSecurityDialect());
-        templateEngine.addDialect(new net.sourceforge.html5val.Html5ValDialect());
-        templateEngine.addDialect(new com.github.dandelion.datatables.thymeleaf.dialect.DataTablesDialect());
+        //       templateEngine.addDialect(new net.sourceforge.html5val.Html5ValDialect());
+        //       templateEngine.addDialect(new com.github.dandelion.datatables.thymeleaf.dialect.DataTablesDialect());
         return templateEngine;
     }
 
@@ -84,7 +84,7 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler(RESOURCES_HANDLER).addResourceLocations(RESOURCES_LOCATION);
+        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
 
