@@ -1,14 +1,11 @@
 package com.example.web.rest.product;
 
-import com.example.api.product.ProductDetails;
-import com.example.product.command.Product;
-import com.example.product.query.ProductEntry;
-import com.example.product.query.ProductFactory;
+import com.example.cqrs.api.product.ProductDetails;
+import com.example.cqrs.concrete.product.query.ProductFactory;
 import com.google.common.base.Function;
 import com.google.common.collect.FluentIterable;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

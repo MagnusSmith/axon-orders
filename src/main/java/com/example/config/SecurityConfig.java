@@ -1,9 +1,8 @@
 package com.example.config;
 
+import com.example.common.authentication.UrlAuthenticationSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -28,19 +27,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return successHandler;
     }
 
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth
-//                .inMemoryAuthentication()
-//                .withUser("user").password("password").roles("CUSTOMER_ROLE").and()
-//                .withUser("admin").password("password").roles("ADMIN_ROLE");
-//    }
-//
-//    @Bean
-//    @Override
-//    public AuthenticationManager authenticationManagerBean() throws Exception {
-//        return super.authenticationManagerBean();
-//    }
 
 
     @Autowired
@@ -59,8 +45,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                    .antMatchers("/", "/signin", "/error/**", "/fragments/**", "/layout/**", "/resources/**").permitAll()
-                    .antMatchers("/admin/**").hasRole("ADMIN")
+                    .antMatchers("/", "/signin", "/error/**", "/templates/**", "/resources/**", "/webjars/**").permitAll()
+                .antMatchers("/admin/**").hasRole("ADMIN")
                     .antMatchers("/customer/**").hasRole("CUSTOMER")
                 .and()
                 .formLogin()
@@ -74,7 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll();
 
        http.exceptionHandling().accessDeniedPage("/signin");
-       http.jee().
+
 
 
     }

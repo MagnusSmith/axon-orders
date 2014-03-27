@@ -1,18 +1,15 @@
 package com.example.web.rest.product;
 
-import com.example.api.product.CreateProductCommand;
-import com.example.api.product.DeleteProductCommand;
-import com.example.api.product.ProductId;
-import com.example.api.product.UpdateProductCommand;
-import com.example.product.command.Product;
-import com.example.product.query.ProductEntry;
-import com.example.product.query.ProductFactory;
-import com.example.product.query.ProductQueryRepository;
+import com.example.cqrs.api.product.CreateProductCommand;
+import com.example.cqrs.api.product.DeleteProductCommand;
+import com.example.cqrs.api.product.ProductId;
+import com.example.cqrs.api.product.UpdateProductCommand;
+import com.example.cqrs.concrete.product.query.ProductFactory;
+import com.example.cqrs.concrete.product.query.ProductQueryRepository;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.PostConstruct;
 import java.util.List;
 
 /**

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<!-- SCRIPT AND STYLE RESOURCES -->
+<head th:fragment="resources">
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet"
+          media="screen"
+          th:href="@{/webjars/bootstrap/3.1.0/css/bootstrap.min.css}"/>
+    <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}"/>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"
+            th:src="@{/webjars/jquery/1.11.0/jquery.min.js}"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/3.1.0/js/bootstrap.min.js"
+            th:src="@{/webjars/bootstrap/3.1.0/js/bootstrap.min.js}"></script>
+
+</head>
+
+<body>
+<!-- ALERT -->
+<div th:fragment="alert (type, message)" class="alert alert-dismissable" th:classappend="'alert-' + ${type}">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <span th:text="${message}">Test</span>
+</div>
+</body>
+</html>

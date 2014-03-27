@@ -80,11 +80,7 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <scope>test</scope>
-        </dependency>
+
 
 
         <dependency>
@@ -257,6 +253,36 @@
             <artifactId>thymeleaf-extras-springsecurity3</artifactId>
             <version>2.1.1.RELEASE</version>
         </dependency>
+
+
+        <!-- HTML 5 JSR 303 Validation -->
+        <dependency>
+            <groupId>net.sourceforge.html5valdialect</groupId>
+            <artifactId>html5valdialect</artifactId>
+            <version>2.1.1</version>
+        </dependency>
+        <!-- Dandelion Tables -->
+        <dependency>
+            <groupId>com.github.dandelion</groupId>
+            <artifactId>datatables-thymeleaf</artifactId>
+            <version>0.9.3</version>
+        </dependency>
+
+
+        <!-- WebJars client side libs -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+            <version>1.11.0</version>
+        </dependency>
+
+
+
 
         <!-- Security -->
         <dependency>
@@ -436,7 +462,7 @@
                 <hibernate.hbm2ddl.auto>create</hibernate.hbm2ddl.auto>
                 <hibernate.ejb.naming_strategy>org.hibernate.cfg.ImprovedNamingStrategy</hibernate.ejb.naming_strategy>
                 <hibernate.show_sql>true</hibernate.show_sql>
-                <jpa.entitiy.packages>com.example.order.query, com.example.product.query</jpa.entitiy.packages>
+                <jpa.entitiy.packages>com.example.cqrs.concrete.order.query, com.example.cqrs.concrete.product.query</jpa.entitiy.packages>
                 <build.profile.id>dev</build.profile.id>
             </properties>
             <build>
