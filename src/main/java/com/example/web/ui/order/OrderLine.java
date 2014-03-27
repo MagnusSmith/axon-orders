@@ -4,7 +4,11 @@ import com.example.cqrs.api.order.OrderLineDetails;
 import com.example.cqrs.api.order.OrderLineId;
 import com.example.cqrs.api.product.ProductId;
 import com.example.cqrs.concrete.order.query.OrderLineFactory;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.NumberFormat;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -15,19 +19,24 @@ import java.math.BigDecimal;
  * Time: 14:18
  */
 public class OrderLine implements Serializable {
-
+    @NotEmpty
     private String description;
 
+   @NumberFormat(style = NumberFormat.Style.CURRENCY)
     private BigDecimal price;
 
+    @NotEmpty
     private String productIdentifier;
 
-    private int quantity;
+    @NotNull
+    @Min(value = 1)
+    private Integer quantity;
 
     private String identifier;
 
 
-    OrderLine() {
+    public OrderLine() {
+        super();
         identifier = (new OrderLineId()).toString();
     }
 
@@ -55,26 +64,26 @@ public class OrderLine implements Serializable {
         return productIdentifier;
     }
 
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    String getIdentifier() { return identifier; }
+    public String getIdentifier() { return identifier; }
 
 
-    void setDescription(String description) {
+    public void setDescription(final String description) {
         this.description = description;
     }
 
-    void setPrice(BigDecimal price) {
+    public void setPrice(final BigDecimal price) {
         this.price = price;
     }
 
-    void setProductIdentifier(String productIdentifier) {
+    public void setProductIdentifier(final String productIdentifier) {
         this.productIdentifier = productIdentifier;
     }
 
-    void setQuantity(int quantity) {
+    public void setQuantity(final Integer quantity) {
         this.quantity = quantity;
     }
 
@@ -92,5 +101,9 @@ public class OrderLine implements Serializable {
         return line;
     }
 
-
+    @Override
+    public String toString() {
+        return "OrderLine [identifier=" + identifier + ", productIdentifier=" + productIdentifier + ", description="
+                + description + ", price=" + price + ", quantity=" + quantity + "]";
+    }
 }

@@ -1,84 +1,125 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="templates/default :: resources" />
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"  xmlns:dt="http://github.com/dandelion/datatables">
+<head th:replace="templates/default :: resources"/>
 <body>
-<div th:replace="templates/customer/default :: header" />
+<div th:replace="templates/customer/default :: header"/>
 <div class="container">
     <!-- /* Handle the flash message */-->
     <th:block th:if="${message != null}">
-        <div th:replace="templates/default :: alert (type=${#strings.toLowerCase(message.type)}, message=${message.message})"> </div>
+        <div th:replace="templates/default :: alert (type=${#strings.toLowerCase(message.type)}, message=${message.message})"></div>
     </th:block>
     <div class="hero-unit">
-        <h1>Welcome to the Axon-Orders</h1>
-        <h2>Orders</h2>
-        <div>
+        <h1>Orders</h1>
 
-            <h2 th:text="#{title.new}">Add new order</h2>
-
-            <form action="#" th:action="@{/customer/orders}" th:object="${order}" method="post">
-
-                <fieldset>
-
-                    <legend th:text="#{orders.data}">Order Data</legend>
-
-                    <ul th:if="${#fields.hasErrors('*')}" class="errorlist">
-                        <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
-                    </ul>
-
-
-                    <div>
-                        <label th:text="#{orders.rows}">Order Lines</label>
-                        <table>
-                            <thead>
-                            <tr>
-                                <th th:text="#{orders.lines.head.linenum}">line</th>
-                                <th th:text="#{orders.lines.head.product}">Product</th>
-                                <th th:text="#{orders.lines.head.description}">Description</th>
-                                <th th:text="#{orders.lines.head.quantity}">Quantity</th>
-                                <th th:text="#{orders.lines.head.price}">Price</th>
-                                <th>
-                                    <button type="submit" name="addRow" th:text="#{orders.line.add}">Add row</button>
-                                </th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr th:each="row,rowStat : *{rows}">
-                                <td th:text="${rowStat.count}">1</td>
-                                <td>
-                                    <select th:field="*{rows[__${rowStat.index}__].variety}">
-                                        <option th:each="var : ${allVarieties}" th:value="${var.id}" th:text="${var.name}">Thymus Thymi</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <input type="text" th:field="*{rows[__${rowStat.index}__].product}" th:errorclass="fieldError" />
-                                </td>
-                                <td>
-                                    <input type="text" th:field="*{rows[__${rowStat.index}__].description}" th:errorclass="fieldError" />
-                                </td>
-                                <td>
-                                    <input type="text" th:field="*{rows[__${rowStat.index}__].quantity}" th:errorclass="fieldError" />
-                                </td>
-                                <td>
-                                    <input type="text" th:field="*{rows[__${rowStat.index}__].price}" th:errorclass="fieldError" />
-                                </td>
-                                <td>
-                                    <button type="submit" name="removeRow" th:value="${rowStat.index}" th:text="#{orders.line.remove}">Remove row</button>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="submit">
-                        <button type="submit" name="save" th:text="#{orders.create}">Submit Order</button>
-                    </div>
-
-                </fieldset>
-
-            </form>
-
-        </div>
+        <p>Using standard thymeleaf tables and bootstrap with a dynamic form.</p>
     </div>
+    <div class="orderslist" th:unless="${#lists.isEmpty(allOrders)}">
+
+        <h3 th:text="#{order.title.list}">List of Orders</h3>
+        <table id="showAllTable" class="table table-bordered">
+            <thead>
+            <tr>
+                <th th:text="#{order.date}">Date</th>
+                <th th:text="#{order.lines}">Lines</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="sb : ${allOrders}">
+                <td th:text="${{sb.orderDate}}">13/01/2011</td>
+                <td>
+                    <table id="showLinesTable" class="table table-condensed">
+                        <tbody>
+                        <tr th:each="line,lineStat : ${sb.lines}">
+                            <td th:text="${lineStat.count}">1</td>
+
+                            <td th:text="${line.productIdentifier}">Thymus Thymi</td>
+                            <td th:text="${line.description}">12</td>
+                            <td th:text="${line.quantity}">12</td>
+                            <td th:text="${line.price}">12</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+
+        <h3 th:text="#{order.title.new}">Add new order</h3>
+
+        <form action="#" val:validate="${order}" th:action="@{/customer/orders}" th:object="${order}" method="post">
+
+            <fieldset>
+
+
+                <ul th:if="${#fields.hasErrors('*')}" class="errorlist">
+                    <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
+                </ul>
+                <!--<div>-->
+                <!--<label for ="#{order.date}">-->
+                <!--<span th:text="#{order.orderDate}">Order Date</span>-->
+                <!--(<span th:text="#{date.format}">DD/MM/YYYY</span>)-->
+                <!--</label>-->
+                <!--<input type="text" th:field="*{orderDate}" th:errorclass="fieldError" />-->
+                <!--</div>-->
+
+
+                <div>
+                    <label th:text="#{order.lines}">Order Lines</label>
+                    <table id="addTable"  class="table table-condensed table-bordered">
+                        <thead>
+                        <tr>
+                            <th th:text="#{order.lines.head.linenum}">line</th>
+                            <th th:text="#{order.lines.head.product}">Product</th>
+                            <th th:text="#{order.lines.head.description}">Description</th>
+                            <th th:text="#{order.lines.head.quantity}">Quantity</th>
+                            <th th:text="#{order.lines.head.price}">Price</th>
+                            <th>
+                                <button type="submit" name="addLine" th:text="#{order.line.add}">Add line</button>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="line,lineStat : *{lines}">
+                            <td th:text="${lineStat.count}">1</td>
+
+                            <td>
+                                <input type="text" th:field="*{lines[__${lineStat.index}__].productIdentifier}"
+                                       th:errorclass="fieldError"/>
+                            </td>
+                            <td>
+                                <input type="text" th:field="*{lines[__${lineStat.index}__].description}"
+                                       th:errorclass="fieldError"/>
+                            </td>
+                            <td>
+                                <input type="text" th:field="*{lines[__${lineStat.index}__].quantity}"
+                                       th:errorclass="fieldError"/>
+                            </td>
+                            <td>
+                                <input type="text" th:field="*{lines[__${lineStat.index}__].price}"
+                                       th:errorclass="fieldError"/>
+                            </td>
+                            <td>
+                                <button type="submit" name="removeLine" th:value="${lineStat.index}"
+                                        th:text="#{order.line.remove}">Remove line
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="submit">
+                    <button type="submit" name="save" th:text="#{order.create}">Submit Order</button>
+                </div>
+
+            </fieldset>
+
+        </form>
+
+    </div>
+
 </div>
 <div th:replace="templates/customer/default :: footer"/>
 </body>

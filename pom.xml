@@ -278,10 +278,14 @@
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>jquery</artifactId>
-            <version>1.11.0</version>
+            <version>1.10.1</version>
         </dependency>
 
-
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>datatables</artifactId>
+            <version>1.9.4</version>
+        </dependency>
 
 
         <!-- Security -->

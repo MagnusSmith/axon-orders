@@ -9,6 +9,7 @@ import com.google.common.base.Predicate;
 import com.google.common.collect.FluentIterable;
 import com.google.common.collect.Iterables;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ import java.util.List;
  */
 public class Order implements Serializable {
 
+    @NotNull
     private Date dateTimeOfSubmission;
 
     private List<OrderLine> lines = new ArrayList<>();
@@ -51,17 +53,22 @@ public class Order implements Serializable {
             });
     }
 
+    void removeLine(final int index){
+        lines.remove(index);
+    }
+
     public void submit(){
         dateTimeOfSubmission = new Date();
     }
 
-    public Date getDateTimeOfSubmission() {
+    public Date getOrderDate() {
         return dateTimeOfSubmission;
     }
 
     public List<OrderLine> getLines() {
         return lines;
     }
+
 
     public String getIdentifier() {
         return identifier;
@@ -94,5 +101,11 @@ public class Order implements Serializable {
             }
         }).toList();
         return order;
+    }
+
+
+    @Override
+    public String toString() {
+       return "Order [identifier=" + identifier + ", dateTimeOfSubmission=" + dateTimeOfSubmission + ", lines=" + lines + "]";
     }
 }
