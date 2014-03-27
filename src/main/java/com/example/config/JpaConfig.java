@@ -81,7 +81,8 @@ class JpaConfig implements TransactionManagementConfigurer {
 
     @Bean
     public PlatformTransactionManager transactionManager() {
-        return new JpaTransactionManager(entityManagerFactory().getObject());
+        //@see https://jira.spring.io/browse/SPR-10787
+        return new JpaTransactionManager();
     }
 
 
