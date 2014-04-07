@@ -13,7 +13,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java-version>1.7</java-version>
         <axon.framework.version>2.1.1</axon.framework.version>
-        <org.springframework.version>4.0.2.RELEASE</org.springframework.version>
+        <org.springframework.version>4.0.4.RELEASE</org.springframework.version>
         <bonecp.version>0.7.1.RELEASE</bonecp.version>
         <hsql.version>2.3.0</hsql.version>
         <hibernate.version>4.3.1.Final</hibernate.version>

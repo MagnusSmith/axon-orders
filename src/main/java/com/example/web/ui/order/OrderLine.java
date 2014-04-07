@@ -22,7 +22,8 @@ public class OrderLine implements Serializable {
     @NotEmpty
     private String description;
 
-   @NumberFormat(style = NumberFormat.Style.CURRENCY)
+    @NotNull
+    @NumberFormat(style = NumberFormat.Style.CURRENCY)
     private BigDecimal price;
 
     @NotEmpty
@@ -104,6 +105,6 @@ public class OrderLine implements Serializable {
     @Override
     public String toString() {
         return "OrderLine [identifier=" + identifier + ", productIdentifier=" + productIdentifier + ", description="
-                + description + ", price=" + price + ", quantity=" + quantity + "]";
+                + description + ", price=" + (price != null ? price.setScale(2).toPlainString() : "NULL") + ", quantity=" + quantity + "]";
     }
 }

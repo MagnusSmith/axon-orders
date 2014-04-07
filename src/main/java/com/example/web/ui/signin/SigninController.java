@@ -20,13 +20,23 @@ import java.util.Set;
 @SessionAttributes("userRoles")
 public class SigninController {
 
-    @RequestMapping(value = "signin", method = RequestMethod.GET)
-    public String signin(Model model) {
+    @RequestMapping(value = "customer_signin", method = RequestMethod.GET)
+    public String customerSignin(Model model) {
         Set<String> userRoles = AuthorityUtils.authorityListToSet(SecurityContextHolder.getContext().getAuthentication().getAuthorities());
 
 
         model.addAttribute("userRole", userRoles);
-        return "signin/signin";
+        return "signin/customer_signin";
+    }
+
+
+    @RequestMapping(value = "admin_signin", method = RequestMethod.GET)
+    public String adminSignin(Model model) {
+        Set<String> userRoles = AuthorityUtils.authorityListToSet(SecurityContextHolder.getContext().getAuthentication().getAuthorities());
+
+
+        model.addAttribute("userRole", userRoles);
+        return "signin/admin_signin";
     }
 
 

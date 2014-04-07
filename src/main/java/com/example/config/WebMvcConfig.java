@@ -76,7 +76,7 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
         templateEngine.setTemplateResolver(templateResolver());
         templateEngine.addDialect(new SpringSecurityDialect());
         templateEngine.addDialect(new net.sourceforge.html5val.Html5ValDialect());
-   //     templateEngine.addDialect(new com.github.dandelion.datatables.thymeleaf.dialect.DataTablesDialect());
+        templateEngine.addDialect(new com.github.dandelion.datatables.thymeleaf.dialect.DataTablesDialect());
         return templateEngine;
     }
 
@@ -84,7 +84,7 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
     public ThymeleafViewResolver viewResolver() {
         ThymeleafViewResolver thymeleafViewResolver = new ThymeleafViewResolver();
         thymeleafViewResolver.setTemplateEngine(templateEngine());
-        thymeleafViewResolver.setCharacterEncoding("UTF-8");
+        thymeleafViewResolver.setCharacterEncoding("ISO-8859-1");
         return thymeleafViewResolver;
     }
 

@@ -38,7 +38,7 @@ public class OrderMvcController {
     @InitBinder
     public void initBinder(WebDataBinder binder) {
       //  binder.setAllowedFields("addLine");
-        binder.registerCustomEditor(String.class, "*price*", new CustomNumberEditor(BigDecimal.class, NumberFormat.getCurrencyInstance(Locale.UK), true));
+    //    binder.registerCustomEditor(String.class, "*price*", new CustomNumberEditor(BigDecimal.class, NumberFormat.getCurrencyInstance(Locale.UK), true));
         binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
     }
 
@@ -58,19 +58,18 @@ public class OrderMvcController {
     }
 
     @RequestMapping({"/customer/orders"})
-    public String initOrderForm(Model model) {
-        model.addAttribute(new Order());
+    public String initOrderForm(final Order order) {
         return "customer/orders";
     }
 
 
 
     @RequestMapping(value="/customer/orders", params={"save"})
-    public String createOrder(final Order order, final BindingResult bindingResult) {
+    public String createOrder(Order order, final BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "customer/orders";
         }
-        order.submit();
+
         orderService.createOrder(order);
 
         return "redirect:/customer/orders";

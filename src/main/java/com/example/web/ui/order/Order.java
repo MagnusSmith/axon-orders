@@ -27,13 +27,15 @@ import java.util.List;
 public class Order implements Serializable {
 
     @NotNull
-    private Date dateTimeOfSubmission;
+    private Date date;
 
     private List<OrderLine> lines = new ArrayList<>();
 
     private String identifier;
 
-
+    public Order(){
+         date = new Date();
+    }
 
     public void addLine(String productIdentifier, String description, BigDecimal price, int quantity){
         OrderLine line = new OrderLine(productIdentifier, description, price, quantity);
@@ -58,11 +60,11 @@ public class Order implements Serializable {
     }
 
     public void submit(){
-        dateTimeOfSubmission = new Date();
+        date = new Date();
     }
 
     public Date getOrderDate() {
-        return dateTimeOfSubmission;
+        return date;
     }
 
     public List<OrderLine> getLines() {
@@ -83,9 +85,9 @@ public class Order implements Serializable {
         }).toList();
 
         if (identifier != null) {
-            return OrderFactory.create(new OrderId(identifier), dateTimeOfSubmission, detailLines);
+            return OrderFactory.create(new OrderId(identifier), date, detailLines);
         } else {
-            return OrderFactory.create(new OrderId(), dateTimeOfSubmission, detailLines);
+            return OrderFactory.create(new OrderId(), date, detailLines);
         }
 
     }
@@ -93,7 +95,7 @@ public class Order implements Serializable {
     public static Order fromOrderDetails(OrderDetails details){
         Order order = new Order();
         order.identifier = details.getOrderId().toString();
-        order.dateTimeOfSubmission = details.getDateTimeOfSubmission();
+        order.date = details.getDateTimeOfSubmission();
         order.lines = FluentIterable.from(details.getLines()).transform(new Function<OrderLineDetails, OrderLine>(){
             @Override
             public OrderLine apply(OrderLineDetails line) {
@@ -106,6 +108,6 @@ public class Order implements Serializable {
 
     @Override
     public String toString() {
-       return "Order [identifier=" + identifier + ", dateTimeOfSubmission=" + dateTimeOfSubmission + ", lines=" + lines + "]";
+       return "Order [identifier=" + identifier + ", date=" + date + ", lines=" + lines + "]";
     }
 }

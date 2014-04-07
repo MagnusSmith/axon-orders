@@ -16,7 +16,7 @@
     <div class="orderslist" th:unless="${#lists.isEmpty(allOrders)}">
 
         <h3 th:text="#{order.title.list}">List of Orders</h3>
-        <table id="showAllTable" class="table table-bordered">
+        <table id="showAllTable" dt:table="true">
             <thead>
             <tr>
                 <th th:text="#{order.date}">Date</th>
@@ -25,9 +25,9 @@
             </thead>
             <tbody>
             <tr th:each="sb : ${allOrders}">
-                <td th:text="${{sb.orderDate}}">13/01/2011</td>
+                <td th:text="${sb.orderDate}">13/01/2011</td>
                 <td>
-                    <table id="showLinesTable" class="table table-condensed">
+                    <table id="showLinesTable">
                         <tbody>
                         <tr th:each="line,lineStat : ${sb.lines}">
                             <td th:text="${lineStat.count}">1</td>
@@ -45,7 +45,7 @@
         </table>
     </div>
     <div>
-
+        <br/>
         <h3 th:text="#{order.title.new}">Add new order</h3>
 
         <form action="#" val:validate="${order}" th:action="@{/customer/orders}" th:object="${order}" method="post">
@@ -67,7 +67,7 @@
 
                 <div>
                     <label th:text="#{order.lines}">Order Lines</label>
-                    <table id="addTable"  class="table table-condensed table-bordered">
+                    <table id="addTable" dt:table="true" dt:sort="false" dt:paginate="false" dt:info="false" dt:lengthchange="false">
                         <thead>
                         <tr>
                             <th th:text="#{order.lines.head.linenum}">line</th>
@@ -97,7 +97,8 @@
                                        th:errorclass="fieldError"/>
                             </td>
                             <td>
-                                <input type="text" th:field="*{lines[__${lineStat.index}__].price}"
+                                <input type="text" th:field="*{{lines[__${lineStat.index}__].price}}"
+
                                        th:errorclass="fieldError"/>
                             </td>
                             <td>
