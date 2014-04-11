@@ -2,15 +2,20 @@ package com.example.web.ui.error;
 
 import com.google.common.base.Throwables;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.text.MessageFormat;
+import java.util.Set;
 
 @Controller
+@SessionAttributes("userRoles")
 class CustomErrorController {
 
 	/**
@@ -37,11 +42,39 @@ class CustomErrorController {
         return "error/general";
 	}
 
-	private String getExceptionMessage(Throwable throwable, Integer statusCode) {
+	@RequestMapping("accessDenied")
+    public String accessDenied(HttpServletRequest request, HttpServletResponse response, Model model){
+         // check user role to decide where we will send them after access denied page
+        Set<String> userRoles = AuthorityUtils.authorityListToSet(SecurityContextHolder.getContext().getAuthentication().getAuthorities());
+
+        String referer = request.getHeader("Referer");
+
+        String message = MessageFormat.format("403 Forbidden - You are not authorised to view {0} please click the link below to signin", referer);
+        model.addAttribute("errorMessage", message);
+
+        if(userRoles.contains("CUSTOMER")){
+            model.addAttribute("signInUrl", "signin/customer_signin");
+        }else if(userRoles.contains("ADMIN")){
+            model.addAttribute("signInUrl", "signin/admin_signin");
+        }
+
+        return "error/forbidden";
+
+
+    }
+
+
+
+
+
+    private String getExceptionMessage(Throwable throwable, Integer statusCode) {
 		if (throwable != null) {
 			return Throwables.getRootCause(throwable).getMessage();
 		}
 		HttpStatus httpStatus = HttpStatus.valueOf(statusCode);
 		return httpStatus.getReasonPhrase();
 	}
+
+
+
 }

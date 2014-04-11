@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.Enumeration;
 import java.util.Set;
 
 /**
@@ -21,22 +23,32 @@ import java.util.Set;
 public class SigninController {
 
     @RequestMapping(value = "customer_signin", method = RequestMethod.GET)
-    public String customerSignin(Model model) {
+    public String customerSignin(Model model, HttpServletRequest request) {
         Set<String> userRoles = AuthorityUtils.authorityListToSet(SecurityContextHolder.getContext().getAuthentication().getAuthorities());
 
-
         model.addAttribute("userRole", userRoles);
-        return "signin/customer_signin";
+
+        if(request.getQueryString() != null){
+            model.addAttribute("error", "1");
+        }
+
+         return "signin/customer_signin";
     }
 
 
+
     @RequestMapping(value = "admin_signin", method = RequestMethod.GET)
-    public String adminSignin(Model model) {
+    public String adminSignin(Model model, HttpServletRequest request) {
         Set<String> userRoles = AuthorityUtils.authorityListToSet(SecurityContextHolder.getContext().getAuthentication().getAuthorities());
 
-
         model.addAttribute("userRole", userRoles);
+
+        if(request.getQueryString() != null){
+            model.addAttribute("error", "1");
+        }
+
         return "signin/admin_signin";
+
     }
 
 

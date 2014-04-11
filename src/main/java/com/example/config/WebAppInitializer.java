@@ -17,7 +17,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class<?>[]{ ApplicationConfig.class, AxonConfig.class, DataSourceConfig.class, JpaConfig.class, SecurityConfig.class, SecurityConfig.AdminFormLoginWebSecurity.class, SecurityConfig.CustomerFormLoginWebSecurity.class};
+        return new Class<?>[]{ ApplicationConfig.class, AxonConfig.class, DataSourceConfig.class, JpaConfig.class, SecurityConfig.class};
     }
 
     @Override
@@ -28,7 +28,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
     @Override
     protected Filter[] getServletFilters() {
         CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
-        characterEncodingFilter.setEncoding("ISO-8859-1");
+        characterEncodingFilter.setEncoding("UTF-8");
         characterEncodingFilter.setForceEncoding(true);
         return new Filter[] {characterEncodingFilter};
     }

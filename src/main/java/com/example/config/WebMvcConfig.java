@@ -1,12 +1,15 @@
 package com.example.config;
 
 import com.example.Application;
+import com.example.common.authentication.PathTokens;
+import com.example.common.authentication.TwoPageLoginAuthenticationFilter;
 import com.example.web.ui.conversion.DateFormatter;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.core.annotation.Order;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Validator;
@@ -23,6 +26,7 @@ import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 import org.thymeleaf.templateresolver.TemplateResolver;
 
+import java.util.Arrays;
 import java.util.Locale;
 
 import static org.springframework.context.annotation.ComponentScan.Filter;
@@ -44,6 +48,7 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
         requestMappingHandlerMapping.setUseTrailingSlashMatch(false);
         return requestMappingHandlerMapping;
     }
+
 
     @Bean
     public MessageSource messageSource() {
@@ -84,7 +89,7 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
     public ThymeleafViewResolver viewResolver() {
         ThymeleafViewResolver thymeleafViewResolver = new ThymeleafViewResolver();
         thymeleafViewResolver.setTemplateEngine(templateEngine());
-        thymeleafViewResolver.setCharacterEncoding("ISO-8859-1");
+        thymeleafViewResolver.setCharacterEncoding("UTF-8");
         return thymeleafViewResolver;
     }
 

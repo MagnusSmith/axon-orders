@@ -12,6 +12,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.Currency;
@@ -78,13 +79,15 @@ public class OrderMvcController {
 
 
     @RequestMapping(value="/customer/orders", params={"addLine"})
-    public String addLine(final Order order, final BindingResult bindingResult) {
+    public String addLine(final Order order, final BindingResult bindingResult, final HttpServletResponse response ) {
+        response.setHeader("Content-Type", "application/javascript; charset=utf-8");
         order.getLines().add(new OrderLine());
         return "customer/orders";
     }
 
 
     @RequestMapping(value="/customer/orders", params={"removeLine"})
+
     public String removeLine(final Order order, final BindingResult bindingResult, final HttpServletRequest req) {
         final int index = Integer.parseInt(req.getParameter("removeLine"));
         order.removeLine(index);

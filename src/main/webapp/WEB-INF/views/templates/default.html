@@ -3,7 +3,7 @@
 <!-- SCRIPT AND STYLE RESOURCES -->
 <head th:fragment="resources">
     <title></title>
-    <meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet"
           media="screen"
           th:href="@{/webjars/bootstrap/3.1.0/css/bootstrap.min.css}"/>
@@ -22,9 +22,11 @@
 
 <body>
 <!-- ALERT -->
-<div th:fragment="alert (type, message)" class="alert alert-dismissable" th:classappend="'alert-' + ${type}">
+<div th:fragment="alert(type, message)" class="alert alert-dismissable" th:classappend="'alert-' + ${type}">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
     <span th:text="${message}">Test</span>
 </div>
+
+<div th:fragment="fubar">FUBAR</div>
 </body>
 </html>
