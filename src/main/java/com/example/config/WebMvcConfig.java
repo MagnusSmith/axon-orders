@@ -1,15 +1,12 @@
 package com.example.config;
 
 import com.example.Application;
-import com.example.common.authentication.PathTokens;
-import com.example.common.authentication.TwoPageLoginAuthenticationFilter;
 import com.example.web.ui.conversion.DateFormatter;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-import org.springframework.core.annotation.Order;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Validator;
@@ -26,7 +23,6 @@ import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 import org.thymeleaf.templateresolver.TemplateResolver;
 
-import java.util.Arrays;
 import java.util.Locale;
 
 import static org.springframework.context.annotation.ComponentScan.Filter;
@@ -57,8 +53,9 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
         messageSource.setCacheSeconds(5);
         return messageSource;
     }
+
     @Bean
-    public LocaleResolver localeResolver(){
+    public LocaleResolver localeResolver() {
         CookieLocaleResolver resolver = new CookieLocaleResolver();
         resolver.setDefaultLocale(Locale.UK);
         return resolver;
