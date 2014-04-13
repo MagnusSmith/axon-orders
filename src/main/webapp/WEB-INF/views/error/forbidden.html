@@ -4,7 +4,7 @@
 <body>
 <div class="container">
     <div th:replace="templates/default :: alert (type='danger', message=${errorMessage})">Error: Error</div>
-    <a th::href="@{${signInUrl}}>Click here to signin</a>
+    <a th:href="@{${signInUrl}}">Click here to return to home page</a>
     <div th:include="templates/default :: footer">&copy; 2014 The Static Templates</div>
 </div>
 </body>

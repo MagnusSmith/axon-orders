@@ -21,7 +21,7 @@ class CustomErrorController {
 	/**
 	 * Display an error page, as defined in web.xml <code>custom-error</code> element.
 	 */
-	@RequestMapping("generalError")
+	@RequestMapping("/generalError")
 	public String generalError(HttpServletRequest request, HttpServletResponse response, Model model) {
 		// retrieve some useful information from the request
 		Integer statusCode = (Integer) request.getAttribute("javax.servlet.error.status_code");
@@ -42,20 +42,20 @@ class CustomErrorController {
         return "error/general";
 	}
 
-	@RequestMapping("accessDenied")
+	@RequestMapping("/accessDenied")
     public String accessDenied(HttpServletRequest request, HttpServletResponse response, Model model){
          // check user role to decide where we will send them after access denied page
         Set<String> userRoles = AuthorityUtils.authorityListToSet(SecurityContextHolder.getContext().getAuthentication().getAuthorities());
 
         String referer = request.getHeader("Referer");
 
-        String message = MessageFormat.format("403 Forbidden - You are not authorised to view {0} please click the link below to signin", referer);
+        String message = MessageFormat.format("403 Forbidden - You are not authorised to view {0} please click the link below to return to the home page", referer);
         model.addAttribute("errorMessage", message);
 
-        if(userRoles.contains("CUSTOMER")){
-            model.addAttribute("signInUrl", "signin/customer_signin");
-        }else if(userRoles.contains("ADMIN")){
-            model.addAttribute("signInUrl", "signin/admin_signin");
+        if(userRoles.contains("ROLE_CUSTOMER")){
+            model.addAttribute("signInUrl", "/customer/home");
+        }else if(userRoles.contains("ROLE_ADMIN")){
+            model.addAttribute("signInUrl", "/admin/home");
         }
 
         return "error/forbidden";
