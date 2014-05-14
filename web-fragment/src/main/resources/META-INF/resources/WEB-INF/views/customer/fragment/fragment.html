@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="templates/default :: resources" />
+<body>
+<div th:replace="templates/customer/default :: header" />
+<div class="container">
+    <!-- /* Handle the flash message */-->
+    <th:block th:if="${message != null}">
+        <div th:replace="templates/default :: alert (type=${#strings.toLowerCase(message.type)}, message=${message.message})"> </div>
+    </th:block>
+    <div class="hero-unit">
+        <h1>Axon Orders</h1>
+        <h2 th:text="${greeting}"></h2>
+        <p>
+
+            This page was provided by a web fragment
+
+
+        </p>
+        <p>
+
+        </p>
+    </div>
+</div>
+<div th:replace="templates/customer/default :: footer"/>
+</body>
+</html>
