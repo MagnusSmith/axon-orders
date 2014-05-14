@@ -3,21 +3,15 @@ package com.example.web.ui.order;
 import com.example.common.logging.Loggable;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomNumberEditor;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.math.BigDecimal;
-import java.text.NumberFormat;
-import java.util.Currency;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * Created with IntelliJ IDEA.
@@ -32,8 +26,13 @@ public class OrderMvcController {
     @Loggable
     Logger log;
 
-    @Autowired
+
     OrderService orderService;
+
+    @Autowired
+    public OrderMvcController(OrderService orderService ) {
+        this.orderService = orderService;
+    }
 
 
     @InitBinder
@@ -87,7 +86,6 @@ public class OrderMvcController {
 
 
     @RequestMapping(value="/customer/orders", params={"removeLine"})
-
     public String removeLine(final Order order, final BindingResult bindingResult, final HttpServletRequest req) {
         final int index = Integer.parseInt(req.getParameter("removeLine"));
         order.removeLine(index);
