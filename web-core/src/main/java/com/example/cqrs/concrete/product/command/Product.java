@@ -1,20 +1,18 @@
 package com.example.cqrs.concrete.product.command;
 
+import com.example.common.logging.Logger;
 import com.example.cqrs.api.product.*;
-import com.example.common.logging.Loggable;
 import org.axonframework.eventsourcing.annotation.AbstractAnnotatedAggregateRoot;
 import org.axonframework.eventsourcing.annotation.AggregateIdentifier;
 import org.axonframework.eventsourcing.annotation.EventSourcingHandler;
-
-import java.util.logging.Logger;
 
 /**
  * Created by michael.klos on 19/02/14.
  */
 public class Product extends AbstractAnnotatedAggregateRoot {
 
-    @Loggable
-    private Logger log;
+    @Logger
+    private java.util.logging.Logger log;
 
     @AggregateIdentifier
     private ProductId productId;

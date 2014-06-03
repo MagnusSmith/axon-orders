@@ -1,12 +1,11 @@
 package com.example.cqrs.concrete.product.command;
 
+import com.example.common.logging.Logger;
 import com.example.cqrs.api.product.DeleteProductCommand;
 import com.example.cqrs.api.product.UpdateProductCommand;
-import com.example.common.logging.Loggable;
 import com.example.cqrs.api.product.CreateProductCommand;
 import org.axonframework.commandhandling.annotation.CommandHandler;
 import org.axonframework.repository.Repository;
-import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -17,8 +16,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class ProductCommandHandler {
 
-    @Loggable
-    private Logger log;
+    @Logger
+    private org.slf4j.Logger log;
 
     @Autowired
     @Qualifier("productRepository")

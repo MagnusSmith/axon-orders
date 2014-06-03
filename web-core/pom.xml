@@ -362,6 +362,10 @@
             <testResources>
                 <testResource>
                     <directory>src/main/webapp</directory>
+
+                </testResource>
+                <testResource>
+                    <directory>/META-INF/resources/webjars/</directory>
                 </testResource>
             </testResources>
 

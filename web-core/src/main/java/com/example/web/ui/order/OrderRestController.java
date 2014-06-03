@@ -1,9 +1,8 @@
 package com.example.web.ui.order;
 
 
-import com.example.common.logging.Loggable;
+import com.example.common.logging.Logger;
 import org.axonframework.commandhandling.CommandCallback;
-import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -18,8 +17,8 @@ import java.util.List;
 @RequestMapping("/rest/orders")
 public class OrderRestController {
 
-    @Loggable
-    Logger log;
+    @Logger
+    org.slf4j.Logger log;
 
     @Autowired
     OrderService orderService;

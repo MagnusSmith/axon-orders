@@ -1,7 +1,6 @@
 package com.example.web.ui.admin.home;
 
-import com.example.common.logging.Loggable;
-import org.slf4j.Logger;
+import com.example.common.logging.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,8 +17,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @SessionAttributes("userRoles")
 @RequestMapping("/admin/home")
 public class AdminHomeController {
-    @Loggable
-    private Logger log;
+    @Logger
+    private org.slf4j.Logger log;
 
 
     @RequestMapping(method = RequestMethod.GET)

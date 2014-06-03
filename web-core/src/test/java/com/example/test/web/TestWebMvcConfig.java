@@ -68,6 +68,7 @@ public class TestWebMvcConfig extends WebMvcConfigurationSupport {
 
     @Bean
     public TemplateResolver templateResolver() {
+
         TemplateResolver templateResolver = new ClassLoaderTemplateResolver();
         templateResolver.setPrefix(VIEWS);
         templateResolver.setSuffix(".html");

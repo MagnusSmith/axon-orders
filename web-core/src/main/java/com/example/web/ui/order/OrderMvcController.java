@@ -1,7 +1,6 @@
 package com.example.web.ui.order;
 
-import com.example.common.logging.Loggable;
-import org.slf4j.Logger;
+import com.example.common.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
@@ -23,8 +22,8 @@ import java.util.List;
 @SessionAttributes("userRoles")
 public class OrderMvcController {
 
-    @Loggable
-    Logger log;
+    @Logger
+    org.slf4j.Logger log;
 
 
     OrderService orderService;

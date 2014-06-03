@@ -1,13 +1,12 @@
 package com.example.cqrs.concrete.product.query;
 
+import com.example.common.logging.Logger;
 import com.example.cqrs.api.product.ProductCreatedEvent;
 import com.example.cqrs.api.product.ProductDeletedEvent;
 import com.example.cqrs.api.product.ProductUpdatedEvent;
-import com.example.common.logging.Loggable;
 import org.axonframework.eventhandling.annotation.EventHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.slf4j.Logger;
 
 /**
  * Created by michael.klos on 19/02/14.
@@ -15,8 +14,8 @@ import org.slf4j.Logger;
 @Component
 public class ProductListener {
 
-    @Loggable
-    private Logger log;
+    @Logger
+    private org.slf4j.Logger log;
 
     @Autowired
     ProductEntryRepository repository;

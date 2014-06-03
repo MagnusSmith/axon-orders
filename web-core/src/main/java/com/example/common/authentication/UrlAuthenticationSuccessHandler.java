@@ -1,7 +1,6 @@
 package com.example.common.authentication;
 
-import com.example.common.logging.Loggable;
-import org.slf4j.Logger;
+import com.example.common.logging.Logger;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.DefaultRedirectStrategy;
@@ -23,8 +22,8 @@ import java.util.Collection;
  */
 
 public class UrlAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
-    @Loggable
-    protected Logger log;
+    @Logger
+    protected org.slf4j.Logger log;
 
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 

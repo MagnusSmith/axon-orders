@@ -1,10 +1,9 @@
 package com.example.cqrs.concrete.order.command;
 
+import com.example.common.logging.Logger;
 import com.example.cqrs.api.order.*;
-import com.example.common.logging.Loggable;
 import org.axonframework.commandhandling.annotation.CommandHandler;
 import org.axonframework.repository.Repository;
-import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -20,8 +19,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class OrderCommandHandler {
 
-    @Loggable
-    private Logger log;
+    @Logger
+    private org.slf4j.Logger log;
 
     @Autowired
     @Qualifier("orderRepository")

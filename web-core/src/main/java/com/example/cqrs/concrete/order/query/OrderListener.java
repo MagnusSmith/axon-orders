@@ -1,10 +1,9 @@
 package com.example.cqrs.concrete.order.query;
 
+import com.example.common.logging.Logger;
 import com.example.cqrs.api.order.OrderCancelledEvent;
-import com.example.common.logging.Loggable;
 import com.example.cqrs.api.order.OrderCreatedEvent;
 import org.axonframework.eventhandling.annotation.EventHandler;
-import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,8 +18,8 @@ import org.springframework.stereotype.Component;
 public class OrderListener {
 
 
-    @Loggable
-    private Logger log;
+    @Logger
+    private org.slf4j.Logger log;
 
     @Autowired
     OrderEntryRepository repository;

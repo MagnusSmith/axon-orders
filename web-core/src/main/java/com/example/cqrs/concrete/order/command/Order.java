@@ -1,7 +1,7 @@
 package com.example.cqrs.concrete.order.command;
 
+import com.example.common.logging.Logger;
 import com.example.cqrs.api.order.*;
-import com.example.common.logging.Loggable;
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
 import com.google.common.collect.FluentIterable;
@@ -10,7 +10,6 @@ import org.axonframework.eventsourcing.annotation.AbstractAnnotatedAggregateRoot
 import org.axonframework.eventsourcing.annotation.AggregateIdentifier;
 import org.axonframework.eventsourcing.annotation.EventSourcedMember;
 import org.axonframework.eventsourcing.annotation.EventSourcingHandler;
-import org.slf4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,8 +26,8 @@ public class Order extends AbstractAnnotatedAggregateRoot {
 
     private static final long serialVersionUID = 6778782949492587631L;
 
-    @Loggable
-    private Logger log;
+    @Logger
+    private org.slf4j.Logger log;
 
     @AggregateIdentifier
     private OrderId orderId;

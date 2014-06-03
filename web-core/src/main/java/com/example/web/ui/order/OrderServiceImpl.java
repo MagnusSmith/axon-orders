@@ -1,17 +1,16 @@
 package com.example.web.ui.order;
 
+import com.example.common.logging.Logger;
 import com.example.cqrs.api.order.CancelOrderCommand;
 import com.example.cqrs.api.order.CreateOrderCommand;
 import com.example.cqrs.api.order.OrderDetails;
 import com.example.cqrs.api.order.OrderId;
-import com.example.common.logging.Loggable;
 import com.example.cqrs.concrete.order.query.OrderQueryRepository;
 
 import com.google.common.base.Function;
 import com.google.common.collect.FluentIterable;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.repository.AggregateNotFoundException;
-import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,8 +26,8 @@ import java.util.List;
  */
 @Service
 public class OrderServiceImpl implements OrderService {
-    @Loggable
-    Logger log;
+    @Logger
+    org.slf4j.Logger log;
 
     @Autowired
     CommandGateway gateway;
