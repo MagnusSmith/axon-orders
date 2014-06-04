@@ -234,12 +234,12 @@
             <dependency>
                 <groupId>org.thymeleaf</groupId>
                 <artifactId>thymeleaf</artifactId>
-                <version>${org.thymeleaf-version}</version>
+                <version>${org.thymeleaf.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.thymeleaf</groupId>
                 <artifactId>thymeleaf-spring4</artifactId>
-                <version>${org.thymeleaf-version}</version>
+                <version>${org.thymeleaf.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.thymeleaf.extras</groupId>
@@ -282,21 +282,42 @@
 
 
             <!-- Security -->
+            <!--<dependency>-->
+                <!--<groupId>org.springframework.security</groupId>-->
+                <!--<artifactId>spring-security-config</artifactId>-->
+                <!--<version>${org.springframework.security.version}</version>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>org.springframework.security</groupId>-->
+                <!--<artifactId>spring-security-web</artifactId>-->
+                <!--<version>${org.springframework.security.version}</version>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>org.springframework.security</groupId>-->
+                <!--<artifactId>spring-security-taglibs</artifactId>-->
+                <!--<version>${org.springframework.security.version}</version>-->
+            <!--</dependency>-->
+
+
             <dependency>
                 <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-config</artifactId>
-                <version>${org.springframework.security-version}</version>
+                <artifactId>spring-security-core</artifactId>
+                <version>4.0.0.M1</version>
+                <!--<scope>compile</scope>-->
             </dependency>
             <dependency>
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-web</artifactId>
-                <version>${org.springframework.security-version}</version>
+                <version>4.0.0.M1</version>
+                <!--<scope>compile</scope>-->
             </dependency>
             <dependency>
                 <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-taglibs</artifactId>
-                <version>${org.springframework.security-version}</version>
+                <artifactId>spring-security-config</artifactId>
+                <version>4.0.0.M1</version>
+                <!--<scope>compile</scope>-->
             </dependency>
+
 
             <!-- Test -->
             <dependency>
@@ -317,6 +338,12 @@
                 <version>1.9.5</version>
                 <scope>test</scope>
             </dependency>
+
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-test</artifactId>
+                <version>4.0.0.M1</version>
+            </dependency>
             <!--<dependency>-->
                 <!--<groupId>org.apache.httpcomponents</groupId>-->
                 <!--<artifactId>httpclient</artifactId>-->
@@ -327,7 +354,8 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-test-mvc-htmlunit</artifactId>
-                <version>1.0.0.M1</version>
+                <!--<version>1.0.0.M1</version>-->
+                <version>1.0.0.BUILD-SNAPSHOT</version>
                 <scope>test</scope>
             </dependency>
             <!-- necessary only if you are using WebDriver -->

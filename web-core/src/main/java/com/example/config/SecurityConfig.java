@@ -78,7 +78,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.logout().logoutSuccessHandler(logoutSuccessHandler);
         http.exceptionHandling().authenticationEntryPoint(loginEntryPoint);
-        http.exceptionHandling().accessDeniedPage("/error/forbidden");
+        http.exceptionHandling().accessDeniedPage("/error/accessDenied");
 
     }
 }

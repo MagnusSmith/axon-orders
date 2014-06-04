@@ -4,6 +4,7 @@ import com.example.Application;
 import com.example.web.ui.conversion.DateFormatter;
 import com.example.web.ui.customer.home.CustomerHomeController;
 import com.example.web.ui.order.Order;
+import com.example.web.ui.signin.SigninController;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -29,7 +30,7 @@ import javax.validation.Validator;
 import java.util.Locale;
 
 @Configuration
-@ComponentScan(basePackageClasses = CustomerHomeController.class, includeFilters = @ComponentScan.Filter(Controller.class), useDefaultFilters = false)
+@ComponentScan(basePackageClasses = {CustomerHomeController.class, SigninController.class}, includeFilters = @ComponentScan.Filter(Controller.class), useDefaultFilters = false)
 @EnableWebMvc
 public class TestWebMvcConfig extends WebMvcConfigurationSupport {
 
